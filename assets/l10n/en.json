@@ -1,0 +1,19 @@
+{
+    "nav_home": "Home",
+    "nav_projects": "Projects",
+    "nav_case_studies": "Case Studies",
+    "nav_about": "About",
+    "nav_experience": "Experience",
+    "nav_contact": "Contact",
+    "home_greeting": "Hi, I'm",
+    "home_tagline": "Building intelligent mobile solutions with data-driven insights",
+    "home_cta_projects": "View Projects",
+    "home_cta_cv": "Download CV",
+    "projects_title": "My Projects",
+    "contact_title": "Get in Touch",
+    "contact_name": "Name",
+    "contact_email": "Email",
+    "contact_subject": "Subject",
+    "contact_message": "Message",
+    "contact_submit": "Send Message"
+}
