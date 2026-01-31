@@ -3,6 +3,7 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -12,18 +13,29 @@ permissions:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Flutter
+      - name: Setup Flutter (with cache)
         uses: subosito/flutter-action@v2
         with:
           flutter-version: 'stable'
+          cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Verify Flutter installation
+        run: |
+          echo "Flutter version and environment"
+          flutter --version
+          flutter doctor -v
+
+      - name: Install dependencies (with retries)
+        run: |
+          for i in 1 2 3; do
+            flutter pub get && break || (echo "retrying..." && sleep 10)
+          done
 
       - name: Build Flutter web (release)
         run: flutter build web --release
