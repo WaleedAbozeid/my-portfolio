@@ -5,6 +5,8 @@ on:
     branches: [ main, master ]
   workflow_dispatch: {}
 
+# Force refresh to use latest workflow version
+
 permissions:
   contents: write
 
