@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/utils/responsive.dart';
 import '../../../../data/projects_data.dart';
 import '../../../../shared/widgets/cards/project_card.dart';
 
@@ -11,60 +12,53 @@ class FeaturedProjects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
-    final size = MediaQuery.of(context).size;
-    final isDesktop = size.width > 1024;
-    final isTablet = size.width > 768 && size.width <= 1024;
+    final responsive = Responsive(context);
 
     // Grid columns based on screen width
-    int crossAxisCount = isDesktop ? 3 : (isTablet ? 2 : 1);
+    final crossAxisCount = responsive.getGridColumns(
+      mobile: 1,
+      tablet: 2,
+      desktop: 3,
+    );
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 24),
+      padding: EdgeInsets.symmetric(
+        vertical: responsive.isMobile ? 48 : 64,
+        horizontal: responsive.horizontalPadding,
+      ),
       color: Theme.of(context).brightness == Brightness.dark
           ? AppColors.darkSecondaryBackground
           : AppColors.lightSecondaryBackground,
       child: Column(
         children: [
           Text(
-            "Featured Projects", // Add to localizations 'home_featured_projects'
+            "Featured Projects",
+            textAlign: responsive.isMobile ? TextAlign.center : null,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColors.primary,
+              fontSize: responsive.isMobile ? 24 : null,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: responsive.isMobile ? 12 : 16),
           Text(
-            "Check out some of my recent work", // Add to localizations
-            style: Theme.of(context).textTheme.bodyLarge,
+            "Check out some of my recent work",
+            textAlign: responsive.isMobile ? TextAlign.center : null,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontSize: responsive.isMobile ? 14 : null,
+            ),
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: responsive.isMobile ? 32 : 48),
 
-          // Grid or Wrap
-          isDesktop || isTablet
-              ? GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
-                    crossAxisSpacing: 24,
-                    mainAxisSpacing: 24,
-                    childAspectRatio: 0.8, // Adjust as needed
-                  ),
-                  itemCount: sampleProjects.length,
-                  itemBuilder: (context, index) {
-                    return ProjectCard(
-                      project: sampleProjects[index],
-                      onTap: () => context.go(
-                        '/projects',
-                      ), // or specific project details
-                    );
-                  },
-                )
-              : Column(
+          // Grid or Column based on screen size
+          responsive.isMobile
+              ? Column(
                   children: sampleProjects
                       .map(
                         (project) => Padding(
-                          padding: const EdgeInsets.only(bottom: 24.0),
+                          padding: EdgeInsets.only(
+                            bottom: responsive.isMobile ? 20.0 : 24.0,
+                          ),
                           child: ProjectCard(
                             project: project,
                             onTap: () => context.go('/projects'),
@@ -72,17 +66,42 @@ class FeaturedProjects extends StatelessWidget {
                         ),
                       )
                       .toList(),
+                )
+              : GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: responsive.isMobile ? 16 : 24,
+                    mainAxisSpacing: responsive.isMobile ? 16 : 24,
+                    childAspectRatio: responsive.isMobile ? 0.75 : 0.8,
+                  ),
+                  itemCount: sampleProjects.length,
+                  itemBuilder: (context, index) {
+                    return ProjectCard(
+                      project: sampleProjects[index],
+                      onTap: () => context.go('/projects'),
+                    );
+                  },
                 ),
 
-          const SizedBox(height: 48),
+          SizedBox(height: responsive.isMobile ? 32 : 48),
           OutlinedButton(
             onPressed: () => context.go('/projects'),
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              padding: EdgeInsets.symmetric(
+                horizontal: responsive.isMobile ? 24 : 32,
+                vertical: responsive.isMobile ? 14 : 16,
+              ),
               foregroundColor: AppColors.primary,
               side: const BorderSide(color: AppColors.primary),
             ),
-            child: Text(loc.translate('home_cta_projects')),
+            child: Text(
+              loc.translate('home_cta_projects'),
+              style: TextStyle(
+                fontSize: responsive.isMobile ? 14 : null,
+              ),
+            ),
           ),
         ],
       ),

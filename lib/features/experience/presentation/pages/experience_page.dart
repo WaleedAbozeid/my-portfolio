@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/utils/responsive.dart';
 import '../../../../data/models/experience.dart';
 import '../../../../shared/widgets/cards/timeline_item.dart';
 
@@ -30,23 +31,32 @@ class ExperiencePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
+    final responsive = Responsive(context);
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+      padding: responsive.padding,
       child: Center(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 800),
+          constraints: BoxConstraints(
+            maxWidth: responsive.getMaxWidth(
+              mobile: double.infinity,
+              tablet: 900,
+              desktop: 800,
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 loc.translate('nav_experience'),
+                textAlign: responsive.isMobile ? TextAlign.center : null,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.primary,
+                  fontSize: responsive.isMobile ? 28 : null,
                 ),
               ),
-              const SizedBox(height: 48),
+              SizedBox(height: responsive.isMobile ? 32 : 48),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

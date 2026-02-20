@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/utils/responsive.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -29,7 +30,7 @@ class _ContactPageState extends State<ContactPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Message sent successfully!'),
-          ), // Localize later
+          ),
         );
         _formKey.currentState?.reset();
       }
@@ -46,34 +47,43 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
-    final size = MediaQuery.of(context).size;
-    final isDesktop = size.width > 768;
+    final responsive = Responsive(context);
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+      padding: responsive.padding,
       child: Center(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 1000),
+          constraints: BoxConstraints(
+            maxWidth: responsive.getMaxWidth(
+              mobile: double.infinity,
+              tablet: 900,
+              desktop: 1000,
+            ),
+          ),
           child: Column(
             children: [
               Text(
                 loc.translate('contact_title'),
+                textAlign: responsive.isMobile ? TextAlign.center : null,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.primary,
+                  fontSize: responsive.isMobile ? 28 : null,
                 ),
               ),
-              const SizedBox(height: 48),
+              SizedBox(height: responsive.isMobile ? 32 : 48),
 
               Flex(
-                direction: isDesktop ? Axis.horizontal : Axis.vertical,
+                direction: responsive.isMobile ? Axis.vertical : Axis.horizontal,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Contact Info
                   Expanded(
-                    flex: isDesktop ? 4 : 0,
+                    flex: responsive.isMobile ? 0 : 4,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: responsive.isMobile 
+                          ? CrossAxisAlignment.center 
+                          : CrossAxisAlignment.start,
                       children: [
                         _ContactItem(
                           icon: Icons.email,
@@ -81,38 +91,44 @@ class _ContactPageState extends State<ContactPage> {
                           onTap: () =>
                               _launchUrl("mailto:waleed.abouzeid@email.com"),
                         ),
-                        const SizedBox(height: 24),
+                        SizedBox(height: responsive.isMobile ? 20 : 24),
                         _ContactItem(
                           icon: Icons.phone,
                           label: "+20 1030649525",
                           onTap: () => _launchUrl("tel:+200000000000"),
                         ),
-                        const SizedBox(height: 24),
+                        SizedBox(height: responsive.isMobile ? 20 : 24),
                         const _ContactItem(
                           icon: Icons.location_on,
                           label: "Egypt",
                         ),
-                        const SizedBox(height: 48),
+                        SizedBox(height: responsive.isMobile ? 32 : 48),
                         Wrap(
-                          spacing: 16,
-                          runSpacing: 16,
+                          alignment: responsive.isMobile 
+                              ? WrapAlignment.center 
+                              : WrapAlignment.start,
+                          spacing: responsive.isMobile ? 12 : 16,
+                          runSpacing: responsive.isMobile ? 12 : 16,
                           children: [
                             IconButton(
                               onPressed: () => _launchUrl("https://github.com"),
                               icon: const FaIcon(FontAwesomeIcons.github),
                               tooltip: "GitHub",
+                              iconSize: responsive.isMobile ? 24 : 28,
                             ),
                             IconButton(
                               onPressed: () =>
                                   _launchUrl("https://linkedin.com"),
                               icon: const FaIcon(FontAwesomeIcons.linkedin),
                               tooltip: "LinkedIn",
+                              iconSize: responsive.isMobile ? 24 : 28,
                             ),
                             IconButton(
                               onPressed: () =>
                                   _launchUrl("https://twitter.com"),
                               icon: const FaIcon(FontAwesomeIcons.twitter),
                               tooltip: "Twitter",
+                              iconSize: responsive.isMobile ? 24 : 28,
                             ),
                           ],
                         ),
@@ -120,12 +136,14 @@ class _ContactPageState extends State<ContactPage> {
                     ),
                   ),
 
-                  if (isDesktop) const SizedBox(width: 48),
-                  if (!isDesktop) const SizedBox(height: 48),
+                  SizedBox(
+                    width: responsive.isMobile ? 0 : responsive.isTablet ? 32 : 48,
+                    height: responsive.isMobile ? 32 : 0,
+                  ),
 
                   // Contact Form
                   Expanded(
-                    flex: isDesktop ? 6 : 0,
+                    flex: responsive.isMobile ? 0 : 6,
                     child: FormBuilder(
                       key: _formKey,
                       child: Column(
@@ -138,7 +156,7 @@ class _ContactPageState extends State<ContactPage> {
                             ),
                             validator: FormBuilderValidators.required(),
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: responsive.isMobile ? 12 : 16),
                           FormBuilderTextField(
                             name: 'email',
                             decoration: InputDecoration(
@@ -150,7 +168,7 @@ class _ContactPageState extends State<ContactPage> {
                               FormBuilderValidators.email(),
                             ]),
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: responsive.isMobile ? 12 : 16),
                           FormBuilderTextField(
                             name: 'subject',
                             decoration: InputDecoration(
@@ -159,7 +177,7 @@ class _ContactPageState extends State<ContactPage> {
                             ),
                             validator: FormBuilderValidators.required(),
                           ),
-                          const SizedBox(height: 16),
+                          SizedBox(height: responsive.isMobile ? 12 : 16),
                           FormBuilderTextField(
                             name: 'message',
                             decoration: InputDecoration(
@@ -167,12 +185,12 @@ class _ContactPageState extends State<ContactPage> {
                               border: const OutlineInputBorder(),
                             ),
                             validator: FormBuilderValidators.required(),
-                            maxLines: 5,
+                            maxLines: responsive.isMobile ? 4 : 5,
                           ),
-                          const SizedBox(height: 32),
+                          SizedBox(height: responsive.isMobile ? 24 : 32),
                           SizedBox(
                             width: double.infinity,
-                            height: 50,
+                            height: responsive.isMobile ? 48 : 50,
                             child: ElevatedButton(
                               onPressed: _isLoading ? null : _submitForm,
                               style: ElevatedButton.styleFrom(
@@ -183,7 +201,12 @@ class _ContactPageState extends State<ContactPage> {
                                   ? const CircularProgressIndicator(
                                       color: Colors.white,
                                     )
-                                  : Text(loc.translate('contact_submit')),
+                                  : Text(
+                                      loc.translate('contact_submit'),
+                                      style: TextStyle(
+                                        fontSize: responsive.isMobile ? 16 : null,
+                                      ),
+                                    ),
                             ),
                           ),
                         ],
@@ -209,15 +232,36 @@ class _ContactItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive(context);
+    
     return InkWell(
       onTap: onTap,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: AppColors.primary),
-          const SizedBox(width: 16),
-          Text(label, style: Theme.of(context).textTheme.bodyLarge),
-        ],
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        child: Row(
+          mainAxisSize: responsive.isMobile ? MainAxisSize.max : MainAxisSize.min,
+          mainAxisAlignment: responsive.isMobile 
+              ? MainAxisAlignment.center 
+              : MainAxisAlignment.start,
+          children: [
+            Icon(
+              icon, 
+              color: AppColors.primary,
+              size: responsive.isMobile ? 20 : 24,
+            ),
+            SizedBox(width: responsive.isMobile ? 12 : 16),
+            Flexible(
+              child: Text(
+                label,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: responsive.isMobile ? 14 : null,
+                ),
+                textAlign: responsive.isMobile ? TextAlign.center : null,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

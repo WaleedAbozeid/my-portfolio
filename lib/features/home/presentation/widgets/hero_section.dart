@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/utils/responsive.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -12,180 +13,203 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
-    final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 768;
+    final responsive = Responsive(context);
 
     return Container(
       constraints: BoxConstraints(
-        minHeight: size.height - 60,
-      ), // Adjust for AppBar
-      padding: EdgeInsets.symmetric(
-        horizontal: isMobile ? 24 : 64,
-        vertical: 48,
+        minHeight: responsive.isMobile 
+            ? MediaQuery.of(context).size.height * 0.8 
+            : MediaQuery.of(context).size.height - 60,
+      ),
+      padding: responsive.padding.copyWith(
+        top: responsive.isMobile ? 32 : 48,
+        bottom: responsive.isMobile ? 48 : 64,
       ),
       child: Center(
-        child: Flex(
-          direction: isMobile ? Axis.vertical : Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Text Content
-            Expanded(
-              flex: isMobile ? 0 : 5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FadeInDown(
-                    duration: const Duration(milliseconds: 800),
-                    child: Text(
-                      loc.translate('home_greeting'),
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  FadeInLeft(
-                    delay: const Duration(milliseconds: 200),
-                    duration: const Duration(milliseconds: 800),
-                    child: Text(
-                      "Waleed Mohamed\nAbouzeid",
-                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        height: 1.1,
+        child: Container(
+          constraints: BoxConstraints(
+            maxWidth: responsive.getMaxWidth(
+              mobile: double.infinity,
+              tablet: 900,
+              desktop: 1200,
+            ),
+          ),
+          child: Flex(
+            direction: responsive.isMobile ? Axis.vertical : Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Text Content
+              Expanded(
+                flex: responsive.isMobile ? 0 : 5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: responsive.isMobile 
+                      ? CrossAxisAlignment.center 
+                      : CrossAxisAlignment.start,
+                  children: [
+                    FadeInDown(
+                      duration: const Duration(milliseconds: 800),
+                      child: Text(
+                        loc.translate('home_greeting'),
+                        textAlign: responsive.isMobile ? TextAlign.center : null,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.bold,
+                              fontSize: responsive.isMobile ? 18 : null,
+                            ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  FadeInLeft(
-                    delay: const Duration(milliseconds: 400),
-                    duration: const Duration(milliseconds: 800),
-                    child: Text(
-                      loc.translate('home_tagline'),
-                      style: Theme.of(context).textTheme.headlineSmall
-                          ?.copyWith(
-                            color: Theme.of(
-                              context,
-                            ).textTheme.bodyLarge?.color?.withOpacity(0.8),
-                          ),
+                    SizedBox(height: responsive.isMobile ? 12 : 16),
+                    FadeInLeft(
+                      delay: const Duration(milliseconds: 200),
+                      duration: const Duration(milliseconds: 800),
+                      child: Text(
+                        "Waleed Mohamed\nAbouzeid",
+                        textAlign: responsive.isMobile ? TextAlign.center : null,
+                        style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          height: 1.1,
+                          fontSize: responsive.isMobile ? 32 : responsive.isTablet ? 40 : null,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  FadeInUp(
-                    delay: const Duration(milliseconds: 600),
-                    duration: const Duration(milliseconds: 800),
-                    child: Wrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: [
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            context.go('/projects');
-                          },
-                          icon: const Icon(Icons.work_outline),
-                          label: Text(loc.translate('home_cta_projects')),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 24,
-                              vertical: 16,
+                    SizedBox(height: responsive.isMobile ? 12 : 16),
+                    FadeInLeft(
+                      delay: const Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 800),
+                      child: Text(
+                        loc.translate('home_tagline'),
+                        textAlign: responsive.isMobile ? TextAlign.center : null,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
+                              color: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.color?.withOpacity(0.8),
+                              fontSize: responsive.isMobile ? 16 : null,
+                            ),
+                      ),
+                    ),
+                    SizedBox(height: responsive.isMobile ? 24 : 32),
+                    FadeInUp(
+                      delay: const Duration(milliseconds: 600),
+                      duration: const Duration(milliseconds: 800),
+                      child: Wrap(
+                        alignment: responsive.isMobile ? WrapAlignment.center : WrapAlignment.start,
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              context.go('/projects');
+                            },
+                            icon: const Icon(Icons.work_outline, size: 18),
+                            label: Text(loc.translate('home_cta_projects')),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              foregroundColor: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: responsive.isMobile ? 20 : 24,
+                                vertical: responsive.isMobile ? 14 : 16,
+                              ),
                             ),
                           ),
-                        ),
-                        OutlinedButton.icon(
-                          onPressed: () {
-                            // Download CV logic
-                          },
-                          icon: const Icon(Icons.download),
-                          label: Text(
-                            loc.translate('home_cta_cv'),
-                          ), // Add to json if missing
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 24,
-                              vertical: 16,
+                          OutlinedButton.icon(
+                            onPressed: () {
+                              // Download CV logic
+                            },
+                            icon: const Icon(Icons.download, size: 18),
+                            label: Text(
+                              loc.translate('home_cta_cv'),
                             ),
-                            side: const BorderSide(color: AppColors.primary),
-                            foregroundColor: AppColors.primary,
+                            style: OutlinedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: responsive.isMobile ? 20 : 24,
+                                vertical: responsive.isMobile ? 14 : 16,
+                              ),
+                              side: const BorderSide(color: AppColors.primary),
+                              foregroundColor: AppColors.primary,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 48),
-                  FadeInUp(
-                    delay: const Duration(milliseconds: 800),
-                    child: const Wrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: [
-                        _TechBadge(
-                          icon: FontAwesomeIcons.flutter,
-                          label: 'Flutter',
-                        ),
-                        _TechBadge(
-                          icon: FontAwesomeIcons.database,
-                          label: 'Firebase',
-                        ), // using database generic
-                        _TechBadge(
-                          icon: FontAwesomeIcons.python,
-                          label: 'Python',
-                        ),
-                        _TechBadge(
-                          icon: FontAwesomeIcons.chartBar,
-                          label: 'Power BI',
-                        ),
-                      ],
+                    SizedBox(height: responsive.isMobile ? 32 : 48),
+                    FadeInUp(
+                      delay: const Duration(milliseconds: 800),
+                      child: Wrap(
+                        alignment: responsive.isMobile ? WrapAlignment.center : WrapAlignment.start,
+                        spacing: responsive.isMobile ? 8 : 16,
+                        runSpacing: responsive.isMobile ? 8 : 16,
+                        children: [
+                          _TechBadge(
+                            icon: FontAwesomeIcons.flutter,
+                            label: 'Flutter',
+                          ),
+                          _TechBadge(
+                            icon: FontAwesomeIcons.database,
+                            label: 'Firebase',
+                          ),
+                          _TechBadge(
+                            icon: FontAwesomeIcons.python,
+                            label: 'Python',
+                          ),
+                          _TechBadge(
+                            icon: FontAwesomeIcons.chartBar,
+                            label: 'Power BI',
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (!isMobile) ...[
-              const SizedBox(width: 48),
-              // Hero Image
-              Expanded(
-                flex: 4,
-                child: FadeInRight(
-                  duration: const Duration(milliseconds: 1000),
-                  child: Container(
-                    height: 400,
-                    width: 400,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.primary, width: 4),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withOpacity(0.2),
-                          blurRadius: 20,
-                          spreadRadius: 5,
+              if (!responsive.isMobile) ...[
+                SizedBox(width: responsive.isTablet ? 32 : 48),
+                // Hero Image
+                Expanded(
+                  flex: responsive.isTablet ? 3 : 4,
+                  child: FadeInRight(
+                    duration: const Duration(milliseconds: 1000),
+                    child: Container(
+                      height: responsive.isTablet ? 300 : 400,
+                      width: responsive.isTablet ? 300 : 400,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: AppColors.primary, 
+                          width: responsive.isTablet ? 3 : 4,
                         ),
-                      ],
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/Profile/profile2.jpg',
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: Icon(
-                              Icons.person,
-                              size: 100,
-                              color: Colors.grey,
-                            ),
-                          );
-                        },
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary.withOpacity(0.2),
+                            blurRadius: 20,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/Profile/profile2.jpg',
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(
+                              child: Icon(
+                                Icons.person,
+                                size: 100,
+                                color: Colors.grey,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
