@@ -33,6 +33,16 @@ jobs:
           echo "Building with base-href: $BASE_HREF"
           flutter build web --release --base-href "$BASE_HREF"
 
+      - name: Verify build output
+        run: |
+          echo "Checking build/web directory..."
+          ls -la build/web/ | head -20
+          if [ ! -f "build/web/index.html" ]; then
+            echo "ERROR: index.html not found!"
+            exit 1
+          fi
+          echo "Build output verified successfully!"
+
       - name: Add .nojekyll file
         run: touch build/web/.nojekyll
 
@@ -42,4 +52,5 @@ jobs:
           branch: gh-pages
           folder: build/web
           clean: true
+          single-commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
