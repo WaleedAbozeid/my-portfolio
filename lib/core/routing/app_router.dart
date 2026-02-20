@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/projects/presentation/pages/projects_page.dart';
+import '../../features/projects/presentation/pages/project_details_page.dart';
 import '../../features/contact/presentation/pages/contact_page.dart';
 import '../../features/about/presentation/pages/about_page_new.dart';
 import '../../features/experience/presentation/pages/experience_page.dart';
@@ -27,6 +28,13 @@ class AppRouter {
           GoRoute(
             path: '/projects',
             builder: (context, state) => const ProjectsPage(),
+          ),
+          GoRoute(
+            path: '/projects/:id',
+            builder: (context, state) {
+              final projectId = state.pathParameters['id']!;
+              return ProjectDetailsPage(projectId: projectId);
+            },
           ),
           GoRoute(
             path: '/case-studies',

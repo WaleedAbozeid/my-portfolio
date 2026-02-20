@@ -133,7 +133,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                         return ProjectCard(
                           project: filteredProjects[index],
                           onTap: () {
-                            // Navigate to details if needed
+                            context.go('/projects/${filteredProjects[index].id}');
                           },
                         );
                       },

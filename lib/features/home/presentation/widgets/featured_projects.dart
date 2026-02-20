@@ -61,7 +61,7 @@ class FeaturedProjects extends StatelessWidget {
                           ),
                           child: ProjectCard(
                             project: project,
-                            onTap: () => context.go('/projects'),
+                            onTap: () => context.go('/projects/${project.id}'),
                           ),
                         ),
                       )
@@ -80,7 +80,7 @@ class FeaturedProjects extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ProjectCard(
                       project: sampleProjects[index],
-                      onTap: () => context.go('/projects'),
+                      onTap: () => context.go('/projects/${sampleProjects[index].id}'),
                     );
                   },
                 ),

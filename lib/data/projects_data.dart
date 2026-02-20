@@ -11,10 +11,11 @@ final List<Project> sampleProjects = [
     techStack: ['Flutter', 'Dart', 'Provider', 'SQLite', 'Audio Player'],
     category: 'Mobile Apps',
     date: DateTime(2025, 12, 1),
-    githubUrl:
-        'https://github.com/your-username/wesal-app', // غيّر الرابط للـ repo الحقيقي
-    liveUrl:
-        'https://drive.google.com/your-apk-link', // ضع رابط التحميل هنا (Drive أو GitHub Releases)
+    githubUrl: 'https://github.com/your-username/wesal-app',
+    downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing', // ضع رابط APK هنا
+    // أو استخدم:
+    // playStoreUrl: 'https://play.google.com/store/apps/details?id=com.yourapp.wesal',
+    // appStoreUrl: 'https://apps.apple.com/app/wesal/id123456789',
   ),
   Project(
     id: '2',
@@ -26,6 +27,7 @@ final List<Project> sampleProjects = [
     techStack: ['Python', 'TensorFlow', 'OpenCV', 'Flutter'],
     category: 'Data Analytics',
     date: DateTime(2025, 11, 15),
+    githubUrl: 'https://github.com/your-username/crackdetectx',
   ),
   Project(
     id: '3',
@@ -37,5 +39,7 @@ final List<Project> sampleProjects = [
     techStack: ['Flutter', 'REST API', 'GetX', 'Stripe'],
     category: 'Mobile Apps',
     date: DateTime(2025, 10, 1),
+    githubUrl: 'https://github.com/your-username/shoplite',
+    downloadUrl: 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing', // ضع رابط APK هنا
   ),
 ];

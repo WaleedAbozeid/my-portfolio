@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constants/colors.dart';
+import '../../../../core/utils/responsive.dart';
 import '../../../../data/models/project.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -45,7 +47,10 @@ class _ProjectCardState extends State<ProjectCard> {
           ],
         ),
         child: InkWell(
-          onTap: widget.onTap,
+          onTap: widget.onTap ?? () {
+            // Navigate to project details if no custom onTap provided
+            // This will be handled by the parent widget
+          },
           borderRadius: BorderRadius.circular(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,6 +128,13 @@ class _ProjectCardState extends State<ProjectCard> {
                         );
                       }).toList(),
                     ),
+                    // Download buttons
+                    if (widget.project.downloadUrl != null ||
+                        widget.project.playStoreUrl != null ||
+                        widget.project.appStoreUrl != null) ...[
+                      const SizedBox(height: 16),
+                      _buildDownloadButtons(context),
+                    ],
                   ],
                 ),
               ),
@@ -131,5 +143,81 @@ class _ProjectCardState extends State<ProjectCard> {
         ),
       ),
     );
+  }
+
+  Widget _buildDownloadButtons(BuildContext context) {
+    final responsive = Responsive(context);
+    final project = widget.project;
+    
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        if (project.downloadUrl != null)
+          ElevatedButton.icon(
+            onPressed: () => _launchUrl(project.downloadUrl!),
+            icon: const Icon(Icons.download, size: 18),
+            label: Text(
+              'Download APK',
+              style: TextStyle(
+                fontSize: responsive.isMobile ? 12 : 14,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(
+                horizontal: responsive.isMobile ? 12 : 16,
+                vertical: responsive.isMobile ? 8 : 10,
+              ),
+            ),
+          ),
+        if (project.playStoreUrl != null)
+          OutlinedButton.icon(
+            onPressed: () => _launchUrl(project.playStoreUrl!),
+            icon: const Icon(Icons.android, size: 18),
+            label: Text(
+              'Play Store',
+              style: TextStyle(
+                fontSize: responsive.isMobile ? 12 : 14,
+              ),
+            ),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.primary,
+              side: const BorderSide(color: AppColors.primary),
+              padding: EdgeInsets.symmetric(
+                horizontal: responsive.isMobile ? 12 : 16,
+                vertical: responsive.isMobile ? 8 : 10,
+              ),
+            ),
+          ),
+        if (project.appStoreUrl != null)
+          OutlinedButton.icon(
+            onPressed: () => _launchUrl(project.appStoreUrl!),
+            icon: const Icon(Icons.phone_iphone, size: 18),
+            label: Text(
+              'App Store',
+              style: TextStyle(
+                fontSize: responsive.isMobile ? 12 : 14,
+              ),
+            ),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.primary,
+              side: const BorderSide(color: AppColors.primary),
+              padding: EdgeInsets.symmetric(
+                horizontal: responsive.isMobile ? 12 : 16,
+                vertical: responsive.isMobile ? 8 : 10,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
   }
 }
