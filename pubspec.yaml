@@ -75,6 +75,12 @@ flutter:
     - assets/Projects/
     - assets/Projects/Wesal Qoran/
     - assets/Profile/
+    - assets/Projects/pos/
+    - assets/Projects/toptube/
+    - assets/Projects/hadith/
+    - assets/Projects/aqsa/
+    
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

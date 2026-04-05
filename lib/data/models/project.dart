@@ -12,6 +12,10 @@ class Project {
   final String? appStoreUrl; // رابط App Store (iOS)
   final String? playStoreUrl; // رابط Play Store (Android)
   final DateTime date;
+  final String? videoUrl; // رابط الفيديو
+  final double? price; // السعر الأصلي
+  final double? discount; // نسبة الخصم (0-100)
+  final String? whatsappNumber; // رقم الواتساب للشراء
 
   const Project({
     required this.id,
@@ -27,5 +31,18 @@ class Project {
     this.downloadUrl,
     this.appStoreUrl,
     this.playStoreUrl,
+    this.videoUrl,
+    this.price,
+    this.discount,
+    this.whatsappNumber,
   });
+
+  // حساب السعر بعد الخصم
+  double? get discountedPrice {
+    if (price == null || discount == null) return null;
+    return price! * (1 - (discount! / 100));
+  }
+
+  // هل التطبيق مدفوع
+  bool get isPaid => price != null && whatsappNumber != null;
 }

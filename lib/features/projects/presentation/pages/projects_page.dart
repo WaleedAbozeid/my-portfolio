@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../data/projects_data.dart';
 import '../../../../shared/widgets/cards/project_card.dart';
+import 'package:animate_do/animate_do.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -17,9 +19,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   final List<String> _categories = [
     'All',
-    'Mobile Apps',
-    'Data Analytics',
-    'Web',
+    ...sampleProjects.map((p) => p.category).toSet().toList()
   ];
 
   @override
@@ -130,11 +130,15 @@ class _ProjectsPageState extends State<ProjectsPage> {
                       ),
                       itemCount: filteredProjects.length,
                       itemBuilder: (context, index) {
-                        return ProjectCard(
-                          project: filteredProjects[index],
-                          onTap: () {
-                            context.go('/projects/${filteredProjects[index].id}');
-                          },
+                        return FadeInUp(
+                          duration: const Duration(milliseconds: 500),
+                          delay: Duration(milliseconds: 100 * index),
+                          child: ProjectCard(
+                            project: filteredProjects[index],
+                            onTap: () {
+                              context.go('/projects/${filteredProjects[index].id}');
+                            },
+                          ),
                         );
                       },
                     ),

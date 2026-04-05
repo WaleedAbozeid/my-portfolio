@@ -5,10 +5,30 @@ import '../../../../core/utils/responsive.dart';
 import '../buttons/theme_toggle.dart';
 import '../buttons/language_toggle.dart';
 
+class _NavItem {
+  final String titleKey;
+  final String path;
+  final IconData icon;
+
+  const _NavItem({
+    required this.titleKey,
+    required this.path,
+    required this.icon,
+  });
+}
+
 class ScaffoldWithNavbar extends StatelessWidget {
   final Widget child;
 
   const ScaffoldWithNavbar({super.key, required this.child});
+
+  static const List<_NavItem> _navItems = [
+    _NavItem(titleKey: 'nav_home', path: '/', icon: Icons.home),
+    _NavItem(titleKey: 'nav_projects', path: '/projects', icon: Icons.work),
+    _NavItem(titleKey: 'nav_about', path: '/about', icon: Icons.person),
+    _NavItem(titleKey: 'nav_experience', path: '/experience', icon: Icons.timeline),
+    _NavItem(titleKey: 'nav_contact', path: '/contact', icon: Icons.contact_mail),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,41 +44,12 @@ class ScaffoldWithNavbar extends StatelessWidget {
         actions: [
           // Desktop Navigation
           if (responsive.isDesktop) ...[
-            TextButton(
-              onPressed: () {
-                context.go('/');
-                Navigator.of(context).pop(); // Close drawer if open
-              },
-              child: Text(loc.translate('nav_home')),
-            ),
-            TextButton(
-              onPressed: () {
-                context.go('/projects');
-                Navigator.of(context).pop();
-              },
-              child: Text(loc.translate('nav_projects')),
-            ),
-            TextButton(
-              onPressed: () {
-                context.go('/about');
-                Navigator.of(context).pop();
-              },
-              child: Text(loc.translate('nav_about')),
-            ),
-            TextButton(
-              onPressed: () {
-                context.go('/experience');
-                Navigator.of(context).pop();
-              },
-              child: Text(loc.translate('nav_experience')),
-            ),
-            TextButton(
-              onPressed: () {
-                context.go('/contact');
-                Navigator.of(context).pop();
-              },
-              child: Text(loc.translate('nav_contact')),
-            ),
+            ..._navItems.map((item) => TextButton(
+                  onPressed: () {
+                    context.go(item.path);
+                  },
+                  child: Text(loc.translate(item.titleKey)),
+                )),
             const SizedBox(width: 16),
           ],
           // Show theme and language toggles on all screen sizes
@@ -78,11 +69,11 @@ class ScaffoldWithNavbar extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                       ),
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const Text(
+                          Text(
                             'WMA',
                             style: TextStyle(
                               color: Colors.white,
@@ -90,7 +81,7 @@ class ScaffoldWithNavbar extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: 8),
                           Text(
                             'Portfolio',
                             style: TextStyle(
@@ -101,58 +92,24 @@ class ScaffoldWithNavbar extends StatelessWidget {
                         ],
                       ),
                     ),
-                    ListTile(
-                      leading: const Icon(Icons.home),
-                      title: Text(loc.translate('nav_home')),
-                      onTap: () {
-                        context.go('/');
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.work),
-                      title: Text(loc.translate('nav_projects')),
-                      onTap: () {
-                        context.go('/projects');
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.person),
-                      title: Text(loc.translate('nav_about')),
-                      onTap: () {
-                        context.go('/about');
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.timeline),
-                      title: Text(loc.translate('nav_experience')),
-                      onTap: () {
-                        context.go('/experience');
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.contact_mail),
-                      title: Text(loc.translate('nav_contact')),
-                      onTap: () {
-                        context.go('/contact');
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    ..._navItems.map((item) => ListTile(
+                          leading: Icon(item.icon),
+                          title: Text(loc.translate(item.titleKey)),
+                          onTap: () {
+                            context.go(item.path);
+                            Navigator.of(context).pop();
+                          },
+                        )),
                     const Divider(),
-                    ListTile(
-                      leading: const Icon(Icons.brightness_6),
-                      title: const Text('Theme'),
-                      trailing: const ThemeToggle(),
-                      onTap: () {},
+                    const ListTile(
+                      leading: Icon(Icons.brightness_6),
+                      title: Text('Theme'),
+                      trailing: ThemeToggle(),
                     ),
-                    ListTile(
-                      leading: const Icon(Icons.language),
-                      title: const Text('Language'),
-                      trailing: const LanguageToggle(),
-                      onTap: () {},
+                    const ListTile(
+                      leading: Icon(Icons.language),
+                      title: Text('Language'),
+                      trailing: LanguageToggle(),
                     ),
                   ],
                 ),

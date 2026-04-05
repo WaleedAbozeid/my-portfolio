@@ -43,39 +43,44 @@ class HeroSection extends StatelessWidget {
               if (responsive.isMobile) ...[
                 FadeInRight(
                   duration: const Duration(milliseconds: 1000),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    margin: const EdgeInsets.only(bottom: 32),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppColors.primary,
-                        width: 3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withOpacity(0.2),
-                          blurRadius: 20,
-                          spreadRadius: 5,
-                        ),
-                      ],
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/Profile/profile2.jpg',
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(
-                            child: Icon(
-                              Icons.person,
-                              size: 80,
-                              color: Colors.grey,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final imageSize = _calculateProfileImageSize(responsive, constraints.maxWidth);
+                      return Container(
+                        height: imageSize,
+                        width: imageSize,
+                        margin: const EdgeInsets.only(bottom: 32),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppColors.primary,
+                            width: 3,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.primary.withOpacity(0.2),
+                              blurRadius: 20,
+                              spreadRadius: 5,
                             ),
-                          );
-                        },
-                      ),
-                    ),
+                          ],
+                        ),
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/Profile/profile2.jpg',
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Center(
+                                child: Icon(
+                                  Icons.person,
+                                  size: 80,
+                                  color: Colors.grey,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -213,38 +218,45 @@ class HeroSection extends StatelessWidget {
                   flex: responsive.isTablet ? 3 : 4,
                   child: FadeInRight(
                     duration: const Duration(milliseconds: 1000),
-                    child: Container(
-                      height: responsive.isTablet ? 300 : 400,
-                      width: responsive.isTablet ? 300 : 400,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppColors.primary, 
-                          width: responsive.isTablet ? 3 : 4,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.primary.withOpacity(0.2),
-                            blurRadius: 20,
-                            spreadRadius: 5,
-                          ),
-                        ],
-                      ),
-                      child: ClipOval(
-                        child: Image.asset(
-                          'assets/Profile/profile2.jpg',
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const Center(
-                              child: Icon(
-                                Icons.person,
-                                size: 100,
-                                color: Colors.grey,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final imageSize = _calculateProfileImageSize(responsive, constraints.maxWidth);
+                        return Center(
+                          child: Container(
+                            height: imageSize,
+                            width: imageSize,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: AppColors.primary,
+                                width: responsive.isTablet ? 3 : 4,
                               ),
-                            );
-                          },
-                        ),
-                      ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.primary.withOpacity(0.2),
+                                  blurRadius: 20,
+                                  spreadRadius: 5,
+                                ),
+                              ],
+                            ),
+                            child: ClipOval(
+                              child: Image.asset(
+                                'assets/Profile/profile2.jpg',
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Center(
+                                    child: Icon(
+                                      Icons.person,
+                                      size: 100,
+                                      color: Colors.grey,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -256,6 +268,17 @@ class HeroSection extends StatelessWidget {
     );
   }
 }
+
+  double _calculateProfileImageSize(Responsive responsive, double maxWidth) {
+    if (responsive.isMobile) {
+      return maxWidth.clamp(60.0, 160.0);
+    }
+    if (responsive.isTablet) {
+      return maxWidth.clamp(160.0, 260.0);
+    }
+    return maxWidth.clamp(220.0, 320.0);
+  }
+
 
 class _TechBadge extends StatelessWidget {
   final IconData icon;
