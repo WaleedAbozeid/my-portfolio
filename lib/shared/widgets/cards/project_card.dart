@@ -47,17 +47,19 @@ class _ProjectCardState extends State<ProjectCard> {
           ],
         ),
         child: InkWell(
-          onTap: widget.onTap ?? () {
-            // Navigate to project details if no custom onTap provided
-            // This will be handled by the parent widget
-          },
+          onTap:
+              widget.onTap ??
+              () {
+                // Navigate to project details if no custom onTap provided
+                // This will be handled by the parent widget
+              },
           borderRadius: BorderRadius.circular(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Image Placeholder
               Container(
-                height: 200,
+                height: 180,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: isDark ? Colors.grey[800] : Colors.grey[200],
@@ -148,7 +150,7 @@ class _ProjectCardState extends State<ProjectCard> {
   Widget _buildDownloadButtons(BuildContext context) {
     final responsive = Responsive(context);
     final project = widget.project;
-    
+
     return Wrap(
       spacing: 8,
       runSpacing: 8,
@@ -156,12 +158,10 @@ class _ProjectCardState extends State<ProjectCard> {
         if (project.downloadUrl != null)
           ElevatedButton.icon(
             onPressed: () => _launchUrl(project.downloadUrl!),
-            icon: const Icon(Icons.download, size: 18),
+            icon: const Icon(Icons.download, size: 16),
             label: Text(
               'Download APK',
-              style: TextStyle(
-                fontSize: responsive.isMobile ? 12 : 14,
-              ),
+              style: TextStyle(fontSize: responsive.isMobile ? 12 : 14),
             ),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
@@ -178,9 +178,7 @@ class _ProjectCardState extends State<ProjectCard> {
             icon: const Icon(Icons.android, size: 18),
             label: Text(
               'Play Store',
-              style: TextStyle(
-                fontSize: responsive.isMobile ? 12 : 14,
-              ),
+              style: TextStyle(fontSize: responsive.isMobile ? 12 : 14),
             ),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.primary,
@@ -197,9 +195,7 @@ class _ProjectCardState extends State<ProjectCard> {
             icon: const Icon(Icons.phone_iphone, size: 18),
             label: Text(
               'App Store',
-              style: TextStyle(
-                fontSize: responsive.isMobile ? 12 : 14,
-              ),
+              style: TextStyle(fontSize: responsive.isMobile ? 12 : 14),
             ),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.primary,

@@ -8,6 +8,7 @@ import '../../../../core/constants/colors.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../data/models/project.dart';
 import '../../../../data/projects_data.dart';
+import '../../../../shared/widgets/footer.dart';
 
 class ProjectDetailsPage extends StatelessWidget {
   final String projectId;
@@ -148,6 +149,7 @@ class ProjectDetailsPage extends StatelessWidget {
                       ],
                     ),
             ),
+            const Footer(),
           ],
         ),
       ),
@@ -291,9 +293,12 @@ class ProjectDetailsPage extends StatelessWidget {
       return Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SizedBox(
-            height: targetHeight,
-            child: Image.asset(images.first, fit: BoxFit.contain),
+          child: GestureDetector(
+            onTap: () => _showImageDialog(context, images.first),
+            child: SizedBox(
+              height: targetHeight,
+              child: Image.asset(images.first, fit: BoxFit.contain),
+            ),
           ),
         ),
       );
@@ -313,12 +318,15 @@ class ProjectDetailsPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: responsive.isMobile ? 8 : 16,
               ),
-              child: SizedBox(
-                height: targetHeight,
-                child: Image.asset(
-                  img,
-                  fit: BoxFit.contain,
-                  filterQuality: FilterQuality.high,
+              child: GestureDetector(
+                onTap: () => _showImageDialog(context, img),
+                child: SizedBox(
+                  height: targetHeight,
+                  child: Image.asset(
+                    img,
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
+                  ),
                 ),
               ),
             );
@@ -695,5 +703,37 @@ class ProjectDetailsPage extends StatelessWidget {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
+  }
+
+  void _showImageDialog(BuildContext context, String imagePath) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.all(16),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            InteractiveViewer(
+              panEnabled: true,
+              minScale: 0.5,
+              maxScale: 4,
+              child: Image.asset(imagePath, fit: BoxFit.contain),
+            ),
+            Positioned(
+              top: 16,
+              right: 16,
+              child: IconButton(
+                icon: const Icon(Icons.close, color: Colors.white, size: 30),
+                onPressed: () => Navigator.of(context).pop(),
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.black.withOpacity(0.5),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

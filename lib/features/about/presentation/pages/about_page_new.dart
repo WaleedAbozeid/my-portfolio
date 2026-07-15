@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/utils/responsive.dart';
+import '../../../../shared/widgets/footer.dart';
 
 class AboutPageNew extends StatelessWidget {
   const AboutPageNew({super.key});
@@ -68,21 +69,34 @@ class AboutPageNew extends StatelessWidget {
                   height: responsive.isMobile ? 200 : responsive.isTablet ? 250 : 300,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.primary,
-                        AppColors.primary.withOpacity(0.6),
-                      ],
+                    border: Border.all(
+                      color: AppColors.primary,
+                      width: 3,
                     ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'WMA',
-                      style: TextStyle(
-                        fontSize: responsive.isMobile ? 40 : responsive.isTablet ? 50 : 60,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withOpacity(0.2),
+                        blurRadius: 20,
+                        spreadRadius: 5,
                       ),
+                    ],
+                  ),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/Profile/profile2.jpg',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Center(
+                          child: Text(
+                            'WMA',
+                            style: TextStyle(
+                              fontSize: responsive.isMobile ? 40 : responsive.isTablet ? 50 : 60,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -200,6 +214,7 @@ class AboutPageNew extends StatelessWidget {
                   ),
           ),
           SizedBox(height: responsive.isMobile ? 40 : 60),
+          const Footer(),
         ],
       ),
     );

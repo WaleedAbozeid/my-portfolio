@@ -31,7 +31,8 @@ final List<Project> sampleProjects = [
   Project(
     id: '2',
     title: 'Aqsa (الأقصى) - تطبيق إسلامي شامل لأوقات الصلاة والآذان 🕌',
-    description: 'تطبيق إسلامي متكامل لمواقيت الصلاة الدقيقة، اتجاه القبلة، وإشعارات الآذان المخصصة.',
+    description:
+        'تطبيق إسلامي متكامل لمواقيت الصلاة الدقيقة، اتجاه القبلة، وإشعارات الآذان المخصصة.',
     fullDescription:
         'تطبيق "الأقصى" هو تطبيق إسلامي متكامل تم تطويره باستخدام إطار عمل Flutter لتزويد المستخدمين بمواقيت الصلاة الدقيقة، اتجاه القبلة، وتجربة تنبيهات وإشعارات مخصصة. صُمم التطبيق ليكون رفيقاً يومياً للمسلم، مع التركيز على الأداء السلس، الاستهلاك المنخفض للموارد (Offline first)، وإمكانية التخصيص الكاملة لكل مستخدم.\n\n'
         'المميزات الرئيسية:\n'
@@ -50,12 +51,19 @@ final List<Project> sampleProjects = [
       'assets/Projects/aqsa/5.png',
       'assets/Projects/aqsa/6.png',
       'assets/Projects/aqsa/7.png',
-
-
-
-
     ],
-    techStack: ['Flutter', 'Dart', 'Provider', 'Shared Preferences', 'flutter_local_notifications', 'audioplayers', 'geolocator', 'geocoding', 'flutter_compass', 'adhan'],
+    techStack: [
+      'Flutter',
+      'Dart',
+      'Provider',
+      'Shared Preferences',
+      'flutter_local_notifications',
+      'audioplayers',
+      'geolocator',
+      'geocoding',
+      'flutter_compass',
+      'adhan',
+    ],
     category: 'Mobile Apps',
     date: DateTime(2024, 1, 1),
     githubUrl: 'https://github.com/your-username/aqsa-app',
@@ -202,7 +210,65 @@ final List<Project> sampleProjects = [
     date: DateTime(2026, 4, 1), // يمكنك تعديل تاريخ الانتهاء من المشروع
     githubUrl:
         'https://github.com/your-username/top-tube', // ضع الرابط الخاص بك
-    downloadUrl:
-        'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing', // رابط تحميل الـ APK
+  ),
+  Project(
+    id: '7',
+    title: 'Retail Sales Data Analysis & Dashboard',
+    description:
+        'تحليل متكامل لبيانات مبيعات التجزئة وتصميم لوحة معلومات (Dashboard) احترافية.',
+    fullDescription:
+        'يهدف هذا المشروع إلى تحليل بيانات مبيعات التجزئة عبر عدة مراحل تبدأ بتنظيف البيانات وصولاً إلى إنشاء لوحة معلومات تدعم اتخاذ القرار.\n\n'
+        '1. تنظيف البيانات (Data Cleaning):\n'
+        '• إزالة السجلات المكررة (Duplicate Records).\n'
+        '• توحيد تنسيق التواريخ وتحويلها إلى صيغة موحدة.\n'
+        '• معالجة القيم المفقودة في عمود Quantity باستخدام متوسط القيم.\n'
+        '• مراجعة أنواع البيانات وتصحيح التنسيقات لضمان دقة التحليل.\n\n'
+        '2. تحليل المؤشرات (Data Analysis):\n'
+        '• حساب إجمالي المبيعات (Total Revenue).\n'
+        '• تحديد المنتج الأكثر مبيعًا والفرع الأعلى تحقيقًا للمبيعات.\n'
+        '• تحليل أداء المنتجات والفروع لاستخلاص أهم النتائج.\n\n'
+        '3. التصور البياني (Data Visualization):\n'
+        '• توزيع المبيعات حسب الموقع (Sales by Location).\n'
+        '• مقارنة مبيعات المنتجات (Product Sales Analysis).\n'
+        '• تحليل تقييمات العملاء (Customer Ratings Analysis).',
+    images: ['assets/Projects/Data Analysis/task2/task2.png'],
+    techStack: [
+      'Microsoft Excel',
+      'Power BI',
+      'Power Query',
+      'Data Cleaning',
+      'Data Analysis',
+      'Data Visualization',
+      'KPI Analysis',
+      'Dashboard Design',
+    ],
+    category: 'Data Analysis',
+    date: DateTime.now(),
+  ),
+  Project(
+    id: '8',
+    title: 'Sales Data Analysis Dashboard',
+    description:
+        'لوحة تحكم تفاعلية (Dashboard) لتحليل المبيعات، الأرباح، وأداء المنتجات والمناطق باستخدام Power BI.',
+    fullDescription:
+        'مشروع تحليل بيانات شامل يهدف إلى استخراج رؤى قيمة من بيانات المبيعات وبناء لوحة تحكم تفاعلية لمساعدة الإدارة في اتخاذ القرارات الصحيحة.\n\n'
+        'النقاط الرئيسية التي يعرضها الداشبورد:\n'
+        '• تحليل الإيرادات (Revenue) والأرباح (Profit) على مدار الأشهر وتتبع نمو المبيعات.\n'
+        '• مقارنة الإيرادات حسب فئة المنتج (Accessories, Clothing, Electronics, Furniture).\n'
+        '• تحليل أداء المناطق الجغرافية (Region) لمعرفة المناطق الأعلى تحقيقاً للإيرادات (مثل الجيزة، المنيا، القاهرة، أسيوط والإسكندرية).\n'
+        '• عرض أعلى 5 منتجات من حيث التكلفة.\n'
+        '• توفير فلاتر تفاعلية مرنة تتيح للمستخدم تصفية البيانات حسب الشهر أو فئة المنتج بدقة.',
+    images: [
+      'assets/Projects/Data Analysis/task3/3.png', // مسار صورة لوحة التحكم (الداشبورد)
+      'assets/Projects/Data Analysis/task3/4.png', // مسار صورة البيانات
+    ],
+    techStack: [
+      'Power BI',
+      'Data Analysis',
+      'Data Visualization',
+      'Dashboard Design',
+    ],
+    category: 'Data Analysis',
+    date: DateTime.now(),
   ),
 ];

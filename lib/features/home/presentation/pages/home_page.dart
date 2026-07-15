@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../widgets/hero_section.dart';
 import '../widgets/featured_projects.dart';
 import '../widgets/skills_section.dart';
+import '../widgets/freelance_section.dart';
 import '../widgets/cta_section.dart';
+import '../../../../shared/widgets/footer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,8 +17,10 @@ class HomePage extends StatelessWidget {
         children: [
           HeroSection(),
           FeaturedProjects(),
+          FreelanceSection(),
           SkillsSection(),
           CtaSection(),
+          Footer(),
         ],
       ),
     );

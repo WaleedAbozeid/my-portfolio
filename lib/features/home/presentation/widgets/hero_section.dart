@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/utils/responsive.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -163,7 +164,7 @@ class HeroSection extends StatelessWidget {
                           ),
                           OutlinedButton.icon(
                             onPressed: () {
-                              // Download CV logic
+                              _launchUrl('https://drive.google.com/file/d/YOUR_CV_FILE_ID/view?usp=sharing');
                             },
                             icon: const Icon(Icons.download, size: 18),
                             label: Text(
@@ -266,6 +267,12 @@ class HeroSection extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
   }
 }
 
