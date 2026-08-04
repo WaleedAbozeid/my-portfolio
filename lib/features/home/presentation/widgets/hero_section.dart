@@ -59,7 +59,7 @@ class HeroSection extends StatelessWidget {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.primary.withOpacity(0.2),
+                              color: AppColors.primary.withValues(alpha: 0.2),
                               blurRadius: 20,
                               spreadRadius: 5,
                             ),
@@ -133,7 +133,7 @@ class HeroSection extends StatelessWidget {
                             ?.copyWith(
                               color: Theme.of(
                                 context,
-                              ).textTheme.bodyLarge?.color?.withOpacity(0.8),
+                              ).textTheme.bodyLarge?.color?.withValues(alpha: 0.8),
                               fontSize: responsive.isMobile ? 16 : null,
                             ),
                       ),
@@ -234,7 +234,7 @@ class HeroSection extends StatelessWidget {
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.primary.withOpacity(0.2),
+                                  color: AppColors.primary.withValues(alpha: 0.2),
                                   blurRadius: 20,
                                   spreadRadius: 5,
                                 ),
@@ -299,7 +299,7 @@ class _TechBadge extends StatelessWidget {
       avatar: FaIcon(icon, size: 16),
       label: Text(label),
       backgroundColor: Theme.of(context).cardColor,
-      side: BorderSide(color: Colors.grey.withOpacity(0.2)),
+      side: BorderSide(color: Colors.grey.withValues(alpha: 0.2)),
     );
   }
 }

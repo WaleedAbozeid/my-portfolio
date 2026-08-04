@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../shared/widgets/footer.dart';
+import '../../../../core/l10n/app_localizations.dart';
 
 class AboutPageNew extends StatelessWidget {
   const AboutPageNew({super.key});
@@ -22,7 +23,7 @@ class AboutPageNew extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'About Me',
+                  AppLocalizations.of(context).translate('about_title'),
                   textAlign: responsive.isMobile ? TextAlign.center : null,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -32,7 +33,7 @@ class AboutPageNew extends StatelessWidget {
                 ),
                 SizedBox(height: responsive.isMobile ? 8 : 12),
                 Text(
-                  'Flutter Developer & Data Analyst',
+                  AppLocalizations.of(context).translate('about_subtitle'),
                   textAlign: responsive.isMobile ? TextAlign.center : null,
                   style: Theme.of(
                     context,
@@ -75,7 +76,7 @@ class AboutPageNew extends StatelessWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primary.withOpacity(0.2),
+                        color: AppColors.primary.withValues(alpha: 0.2),
                         blurRadius: 20,
                         spreadRadius: 5,
                       ),
@@ -114,7 +115,7 @@ class AboutPageNew extends StatelessWidget {
                         : CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hi, I'm Waleed 👋",
+                        AppLocalizations.of(context).translate('about_greeting'),
                         textAlign: responsive.isMobile ? TextAlign.center : null,
                         style: Theme.of(context).textTheme.headlineMedium
                             ?.copyWith(
@@ -124,7 +125,7 @@ class AboutPageNew extends StatelessWidget {
                       ),
                       SizedBox(height: responsive.isMobile ? 16 : 24),
                       Text(
-                        "I'm a passionate Flutter developer and data analyst with expertise in building scalable mobile and web applications. My unique blend of development and analytical skills allows me to create solutions that are not only functional but also data-driven and optimized for performance.",
+                        AppLocalizations.of(context).translate('about_description_1'),
                         textAlign: responsive.isMobile ? TextAlign.center : null,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           height: 1.8,
@@ -134,7 +135,7 @@ class AboutPageNew extends StatelessWidget {
                       ),
                       SizedBox(height: responsive.isMobile ? 12 : 16),
                       Text(
-                        "With experience across multiple platforms including iOS, Android, and Web, I specialize in creating beautiful, responsive applications using Flutter while leveraging data insights to make informed development decisions.",
+                        AppLocalizations.of(context).translate('about_description_2'),
                         textAlign: responsive.isMobile ? TextAlign.center : null,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           height: 1.8,
@@ -167,20 +168,20 @@ class AboutPageNew extends StatelessWidget {
                     children: [
                       _StatCard(
                         value: '2+',
-                        label: 'Years Experience',
-                        subtitle: 'Building mobile & web applications',
+                        label: AppLocalizations.of(context).translate('about_exp_label'),
+                        subtitle: AppLocalizations.of(context).translate('about_exp_sub'),
                       ),
                       const SizedBox(height: 16),
                       _StatCard(
                         value: '10+',
-                        label: 'Projects Completed',
-                        subtitle: 'Successful client projects delivered',
+                        label: AppLocalizations.of(context).translate('about_projects_label'),
+                        subtitle: AppLocalizations.of(context).translate('about_projects_sub'),
                       ),
                       const SizedBox(height: 16),
                       _StatCard(
                         value: '-',
-                        label: 'Client Satisfaction',
-                        subtitle: 'Positive feedback from clients',
+                        label: AppLocalizations.of(context).translate('about_satisfaction_label'),
+                        subtitle: AppLocalizations.of(context).translate('about_satisfaction_sub'),
                       ),
                     ],
                   )
@@ -190,24 +191,24 @@ class AboutPageNew extends StatelessWidget {
                       Expanded(
                         child: _StatCard(
                           value: '2+',
-                          label: 'Years Experience',
-                          subtitle: 'Building mobile & web applications',
+                          label: AppLocalizations.of(context).translate('about_exp_label'),
+                          subtitle: AppLocalizations.of(context).translate('about_exp_sub'),
                         ),
                       ),
                       SizedBox(width: responsive.getSpacing()),
                       Expanded(
                         child: _StatCard(
                           value: '10+',
-                          label: 'Projects Completed',
-                          subtitle: 'Successful client projects delivered',
+                          label: AppLocalizations.of(context).translate('about_projects_label'),
+                          subtitle: AppLocalizations.of(context).translate('about_projects_sub'),
                         ),
                       ),
                       SizedBox(width: responsive.getSpacing()),
                       Expanded(
                         child: _StatCard(
                           value: '-',
-                          label: 'Client Satisfaction',
-                          subtitle: 'Positive feedback from clients',
+                          label: AppLocalizations.of(context).translate('about_satisfaction_label'),
+                          subtitle: AppLocalizations.of(context).translate('about_satisfaction_sub'),
                         ),
                       ),
                     ],
@@ -246,7 +247,7 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
       ),
       child: Column(
         children: [

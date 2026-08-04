@@ -20,7 +20,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   final List<String> _categories = [
     'All',
-    ...sampleProjects.map((p) => p.category).toSet().toList()
+    ...sampleProjects.map((p) => p.category).toSet(),
   ];
 
   @override
@@ -102,7 +102,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                             backgroundColor: Theme.of(context).cardColor,
                             side: isSelected
                                 ? BorderSide.none
-                                : BorderSide(color: Colors.grey.withOpacity(0.3)),
+                                : BorderSide(color: Colors.grey.withValues(alpha: 0.3)),
                           );
                         }).toList(),
                       ),

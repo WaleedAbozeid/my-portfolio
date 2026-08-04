@@ -182,13 +182,13 @@ class _PlatformCardState extends State<_PlatformCard> {
           border: Border.all(
             color: _isHovered
                 ? widget.platform.color
-                : Colors.grey.withOpacity(0.1),
+                : Colors.grey.withValues(alpha: 0.1),
             width: 2,
           ),
           boxShadow: _isHovered
               ? [
                   BoxShadow(
-                    color: widget.platform.color.withOpacity(0.15),
+                    color: widget.platform.color.withValues(alpha: 0.15),
                     blurRadius: 15,
                     offset: const Offset(0, 8),
                   ),
@@ -210,7 +210,7 @@ class _PlatformCardState extends State<_PlatformCard> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: widget.platform.color.withOpacity(0.1),
+                        color: widget.platform.color.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: FaIcon(

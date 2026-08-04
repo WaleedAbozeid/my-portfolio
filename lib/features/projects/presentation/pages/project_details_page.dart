@@ -61,8 +61,8 @@ class ProjectDetailsPage extends StatelessWidget {
             ),
             style: TextButton.styleFrom(
               backgroundColor: isDark
-                  ? Colors.white.withOpacity(0.1)
-                  : Colors.black.withOpacity(0.05),
+                  ? Colors.white.withValues(alpha: 0.1)
+                  : Colors.black.withValues(alpha: 0.05),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -179,7 +179,7 @@ class ProjectDetailsPage extends StatelessWidget {
           Positioned.fill(
             child: Container(
               color: (isDark ? const Color(0xff091122) : const Color(0xfff0f2f5))
-                  .withOpacity(0.6),
+                  .withValues(alpha: 0.6),
             ),
           ),
 
@@ -233,10 +233,10 @@ class ProjectDetailsPage extends StatelessWidget {
                         vertical: responsive.isMobile ? 24 : 32,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
+                        color: Colors.white.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.3),
+                          color: Colors.white.withValues(alpha: 0.3),
                           width: 1.5,
                         ),
                       ),
@@ -259,7 +259,7 @@ class ProjectDetailsPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(
-                                  color: Colors.white.withOpacity(0.9),
+                                  color: Colors.white.withValues(alpha: 0.9),
                                 ),
                           ),
                         ],
@@ -387,13 +387,13 @@ class ProjectDetailsPage extends StatelessWidget {
         color: isDark ? const Color(0xff12213D) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isPrimary ? color.withOpacity(0.5) : Colors.transparent,
+          color: isPrimary ? color.withValues(alpha: 0.5) : Colors.transparent,
           width: 2,
         ),
         boxShadow: isPrimary
             ? [
                 BoxShadow(
-                  color: color.withOpacity(0.2),
+                  color: color.withValues(alpha: 0.2),
                   blurRadius: 20,
                   spreadRadius: 2,
                 ),
@@ -402,7 +402,7 @@ class ProjectDetailsPage extends StatelessWidget {
                   ? []
                   : [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 10,
                       ),
                     ]),
@@ -536,12 +536,12 @@ class ProjectDetailsPage extends StatelessWidget {
         color: isDark ? const Color(0xff12213D) : Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: const Color(0xff00d166).withOpacity(0.3),
+          color: const Color(0xff00d166).withValues(alpha: 0.3),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xff00d166).withOpacity(0.1),
+            color: const Color(0xff00d166).withValues(alpha: 0.1),
             blurRadius: 15,
             spreadRadius: 2,
           ),
@@ -554,9 +554,9 @@ class ProjectDetailsPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.1),
+                color: Colors.red.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.red.withOpacity(0.5)),
+                border: Border.all(color: Colors.red.withValues(alpha: 0.5)),
               ),
               child: Text(
                 '💥 خصم خاص ${proj.discount?.toStringAsFixed(0)}%',
@@ -613,7 +613,7 @@ class ProjectDetailsPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: bgColor.withOpacity(0.3),
+            color: bgColor.withValues(alpha: 0.3),
             blurRadius: 15,
             offset: const Offset(0, 5),
           ),
@@ -668,8 +668,8 @@ class ProjectDetailsPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
                 color: isDark
-                    ? Colors.white.withOpacity(0.08)
-                    : Colors.black.withOpacity(0.05),
+                    ? Colors.white.withValues(alpha: 0.08)
+                    : Colors.black.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
@@ -727,7 +727,7 @@ class ProjectDetailsPage extends StatelessWidget {
                 icon: const Icon(Icons.close, color: Colors.white, size: 30),
                 onPressed: () => Navigator.of(context).pop(),
                 style: IconButton.styleFrom(
-                  backgroundColor: Colors.black.withOpacity(0.5),
+                  backgroundColor: Colors.black.withValues(alpha: 0.5),
                 ),
               ),
             ),

@@ -21,7 +21,7 @@ final List<Project> sampleProjects = [
     techStack: ['Flutter', 'Dart', 'Provider', 'SQLite', 'Audio Player'],
     category: 'Mobile Apps',
     date: DateTime(2025, 12, 1),
-    githubUrl: 'https://github.com/your-username/wesal-app',
+    githubUrl: 'https://github.com/WaleedAbozeid/wesal-app',
     downloadUrl:
         'https://drive.google.com/file/d/1j4prDP66jAvwfe6i5_QqALB4COVHmaWA/view?usp=drive_link', // ضع رابط APK هنا
     // أو استخدم:
@@ -66,7 +66,7 @@ final List<Project> sampleProjects = [
     ],
     category: 'Mobile Apps',
     date: DateTime(2024, 1, 1),
-    githubUrl: 'https://github.com/your-username/aqsa-app',
+    githubUrl: 'https://github.com/WaleedAbozeid/aqsa-app',
     downloadUrl: 'https://drive.google.com/file/d/.../view?usp=drive_link',
   ),
   /*Project(
@@ -93,7 +93,7 @@ final List<Project> sampleProjects = [
     ],
     category: 'AI & Mobile Applications',
     date: DateTime(2025, 11, 15),
-    githubUrl: 'https://github.com/your-username/crackdetectx',
+    githubUrl: 'https://github.com/WaleedAbozeid/crackdetectx',
   ),*/
   Project(
     id: '4',
@@ -131,7 +131,7 @@ final List<Project> sampleProjects = [
     ],
     category: 'Mobile Apps',
     date: DateTime(2025, 10, 1),
-    githubUrl: 'https://github.com/your-username/hadith-app',
+    githubUrl: 'https://github.com/WaleedAbozeid/hadith-app',
     downloadUrl:
         'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing', // ضع رابط APK هنا
   ),
@@ -168,7 +168,7 @@ final List<Project> sampleProjects = [
     ],
     category: 'Desktop Applications',
     date: DateTime.now(),
-    githubUrl: 'https://github.com/your-username/marhaba-pos',
+    githubUrl: 'https://github.com/WaleedAbozeid/marhaba-pos',
     videoUrl: 'https://www.youtube.com',
     price: 10000,
     discount: 60,
@@ -209,7 +209,7 @@ final List<Project> sampleProjects = [
     category: 'Mobile Apps',
     date: DateTime(2026, 4, 1), // يمكنك تعديل تاريخ الانتهاء من المشروع
     githubUrl:
-        'https://github.com/your-username/top-tube', // ضع الرابط الخاص بك
+        'https://github.com/WaleedAbozeid/top-tube', // ضع الرابط الخاص بك
   ),
   Project(
     id: '7',

@@ -18,7 +18,7 @@ class CtaSection extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.primary.withOpacity(0.1),
+            AppColors.primary.withValues(alpha: 0.1),
             Theme.of(context).scaffoldBackgroundColor,
           ],
           begin: Alignment.topCenter,

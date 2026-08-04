@@ -23,17 +23,47 @@ class _ContactPageState extends State<ContactPage> {
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       setState(() => _isLoading = true);
 
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
+      final values = _formKey.currentState!.value;
+      final name = values['name'] ?? '';
+      final email = values['email'] ?? '';
+      final subject = values['subject'] ?? '';
+      final message = values['message'] ?? '';
 
-      if (mounted) {
-        setState(() => _isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Message sent successfully!'),
-          ),
-        );
-        _formKey.currentState?.reset();
+      final mailtoUri = Uri(
+        scheme: 'mailto',
+        path: 'waleedabozeid995@gmail.com',
+        queryParameters: {
+          'subject': subject,
+          'body': 'Name: $name\nEmail: $email\n\nMessage:\n$message',
+        },
+      );
+
+      try {
+        if (await canLaunchUrl(mailtoUri)) {
+          await launchUrl(mailtoUri);
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Message draft opened in email client!'),
+              ),
+            );
+          }
+        } else {
+          throw 'Could not launch mail client';
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error launching email: $e'),
+            ),
+          );
+        }
+      } finally {
+        if (mounted) {
+          setState(() => _isLoading = false);
+          _formKey.currentState?.reset();
+        }
       }
     }
   }
@@ -122,14 +152,14 @@ class _ContactPageState extends State<ContactPage> {
                                   ),
                                   IconButton(
                                     onPressed: () =>
-                                        _launchUrl("https://linkedin.com"),
+                                        _launchUrl("https://linkedin.com/in/waleedabozeid"),
                                     icon: const FaIcon(FontAwesomeIcons.linkedin),
                                     tooltip: "LinkedIn",
                                     iconSize: responsive.isMobile ? 24 : 28,
                                   ),
                                   IconButton(
                                     onPressed: () =>
-                                        _launchUrl("https://x.com"),
+                                        _launchUrl("https://x.com/WaleedAbozeid"),
                                     icon: const FaIcon(FontAwesomeIcons.xTwitter),
                                     tooltip: "Twitter",
                                     iconSize: responsive.isMobile ? 24 : 28,

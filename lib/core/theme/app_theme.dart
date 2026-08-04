@@ -57,8 +57,6 @@ class AppTheme {
     onError: Colors.white,
     surface: AppColors.lightSecondaryBackground,
     onSurface: AppColors.lightTextPrimary,
-    background: AppColors.lightBackground,
-    onBackground: AppColors.lightTextPrimary,
   );
 
   static const ColorScheme _darkColorScheme = ColorScheme(
@@ -71,7 +69,5 @@ class AppTheme {
     onError: Colors.white,
     surface: AppColors.darkSecondaryBackground,
     onSurface: AppColors.darkTextPrimary,
-    background: AppColors.darkBackground,
-    onBackground: AppColors.darkTextPrimary,
   );
 }

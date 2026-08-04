@@ -26,6 +26,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Run Flutter Analyze
+        run: flutter analyze
+
+      - name: Run Flutter Tests
+        run: flutter test
+
       - name: Build Flutter web
         run: |
           REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
