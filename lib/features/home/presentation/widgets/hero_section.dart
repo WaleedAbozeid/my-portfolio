@@ -288,7 +288,7 @@ class HeroSection extends StatelessWidget {
 
 
 class _TechBadge extends StatelessWidget {
-  final IconData icon;
+  final FaIconData icon;
   final String label;
 
   const _TechBadge({required this.icon, required this.label});

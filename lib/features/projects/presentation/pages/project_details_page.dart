@@ -356,7 +356,7 @@ class ProjectDetailsPage extends StatelessWidget {
 
   Widget _buildLargeTechIconCard(String tech, bool isDark) {
     // Determine icon and color based on tech string
-    IconData icon = FontAwesomeIcons.code;
+    FaIconData icon = FontAwesomeIcons.code;
     Color color = AppColors.primary;
     String t = tech.toLowerCase();
 
@@ -410,7 +410,7 @@ class ProjectDetailsPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 48, color: color),
+          FaIcon(icon, size: 48, color: color),
           const SizedBox(height: 16),
           Text(
             tech,

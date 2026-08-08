@@ -102,7 +102,7 @@ class SkillsSection extends StatelessWidget {
 }
 
 class _SkillCard extends StatelessWidget {
-  final IconData icon;
+  final FaIconData icon;
   final String title;
   final String subtitle;
 
@@ -137,7 +137,7 @@ class _SkillCard extends StatelessWidget {
               color: AppColors.primary.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: FaIcon(
               icon,
               size: responsive.isMobile ? 28 : 36,
               color: AppColors.primary,

@@ -134,7 +134,7 @@ class FreelanceSection extends StatelessWidget {
 class _FreelancePlatform {
   final String name;
   final String description;
-  final IconData icon;
+  final FaIconData icon;
   final Color color;
   final String url;
 
