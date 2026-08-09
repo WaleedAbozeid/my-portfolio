@@ -91,32 +91,117 @@ final List<Project> sampleProjects = [
     githubUrl: 'https://github.com/WaleedAbozeid/aqsa-app',
     downloadUrl: 'https://drive.google.com/file/d/.../view?usp=drive_link',
   ),
-  /*Project(
+  Project(
     id: '3',
-    title: 'CrackDetectX',
+    title: '🏗️ CrackDetectX — منصة ذكاء اصطناعي هندسية متكاملة',
     description:
-        'AI-powered mobile application for automated structural crack detection and analysis.',
+        'نظام هندسي رقمي متكامل (Digital Engineering System) يدمج الذكاء الاصطناعي لفحص التصدعات الإنشائية، وسوق العمل الهندسي، ولوحة تحكم إدارية متقدمة (RBAC).',
     fullDescription:
-        'CrackDetectX is an intelligent building inspection system that leverages computer vision and deep learning techniques to detect, classify, and analyze structural cracks in real-time. '
-        'The application provides an intuitive mobile interface built with Flutter, supporting both Arabic and English (RTL), and generates detailed inspection reports. '
-        'It also includes an integrated engineering marketplace where companies can review detected issues and submit repair bids, making it a complete end-to-end solution for building safety assessment.',
+        '📌 نبذة تعريفية شاملة:\n'
+        'CrackDetectX ليس مجرد تطبيق، بل هو نظام هندسي رقمي متكامل (Digital Engineering System) يضم في داخله ثلاثة أنظمة متكاملة تعمل بتناسق تام:\n'
+        '1. نظام الفحص الذكي (AI Inspection System): تحليل التصدعات الخرسانية والإنشائية بالذكاء الاصطناعي وتوليد تقارير PDF.\n'
+        '2. سوق العمل الهندسي (Engineering Marketplace): منصة تربط مالكي المباني بشركات الترميم والمهندسين الميدانيين وتُدير دورة حياة المشروع الكاملة.\n'
+        '3. لوحة تحكم إدارية متقدمة (Enterprise Admin Panel): نظام إدارة كامل مع صلاحيات متعددة المستويات (RBAC) يُمكّن المشرفين من مراقبة كل عمليات المنصة.\n\n'
+        '🔍 المشكلة والحل:\n'
+        '❌ المشكلة:\n'
+        '• فحص يدوي بطيء وغير دقيق للتصدعات الإنشائية يعتمد على الخبرة البصرية الشخصية.\n'
+        '• غياب منصة موثوقة تربط مالكي المباني بمختصي الترميم بطريقة شفافة وآمنة.\n'
+        '• فوضى في إدارة العقود وغياب أي توثيق رسمي لمراحل التسليم والاستلام.\n'
+        '• غياب آلية منظمة ومحايدة لحل النزاعات بين الأطراف.\n\n'
+        '✅ الحل الذي تقدمه المنصة:\n'
+        '• نموذج ذكاء اصطناعي يفحص الصور ويُصنّف الشروخ فورياً بدقة +94.5%.\n'
+        '• سوق هندسي شفاف بنظام مزايدة (Bidding) مدروس وآمن.\n'
+        '• دورة حياة عقد كاملة من إنشاء العقد حتى التسليم النهائي والتقييم.\n'
+        '• نظام نزاعات رسمي يخضع لتحكيم المنصة.\n\n'
+        '🛠️ ما الذي طوّرته فعلياً بالتفصيل؟\n\n'
+        '📱 أولاً: تطبيق Flutter (الجوال و Desktop):\n'
+        '• منظومة المصادقة والمستخدمين: تسجيل دخول وإنشاء حساب مع JWT Token و Refresh Token. دعم 5 أنواع مستخدمين (building_owner, field_engineer, repair_company, admin, super_admin) مع واجهات مخصصة لكل نوع. نظام توثيق احترافي (Verification System) للمهندسين والشركات، وحماية الشاشات بنظام AuthGuard و AdminAuthGuard مع التحقق المزدوج.\n'
+        '• وحدة فحص التصدعات بالذكاء الاصطناعي: التقاط أو رفع الصور من الكاميرا أو المعرض، تحليل لحظي للصورة عبر نموذج ONNX، تصنيف 4 مستويات خطورة (Low / Medium / High / Critical)، تحديد مناطق الشروخ ودرجات الخطورة برسم Bounding Boxes، وتوليد تقارير PDF احترافية تشمل بيانات المبنى، صور الفحص المُحلَّلة، تقييم الخطورة، التوصيات الهندسية، وبيانات المهندس، بالإضافة إلى أرشفة الفحوصات وإدارة بيانات المباني.\n'
+        '• سوق العمل الهندسي (Engineering Marketplace): إنشاء طلبات الترميم وتلقي عروض الأسعار (Bidding) مع تصفية متقدمة حسب السعر والتقييم وسجل المشاريع، وقبول العروض لتحويلها تلقائياً إلى عقود ملزمة.\n'
+        '• دورة حياة العقد الكاملة (Contract Lifecycle Management): شاشة تفاصيل العقد تعكس كل مراحل المشروع (draft, active, in_progress, pending_completion, completed, disputed, cancelled) مع شريط إنجاز بصري، تحديثات دورية بالصور والتفاصيل، وآلية تسليم وقبول/رفض مسببة تفتح نافذة التقييم فور اكتمال العمل.\n'
+        '• نظام النزاعات الهندسية (Dispute System): رفع نزاع رسمي مسبب من أي طرف (تأخير، جودة العمل، التسعير، توقف العمل، أخرى) وتجميد العقد لإحالته للتحكيم الإداري.\n'
+        '• نظام المحادثات الفورية (In-App Messaging): محادثة مباشرة بين المالك والمهندس/الشركة مرتبطة بكل عقد مع دعم إرسال الصور وملفات PDF (المخططات، التقارير)، استخدام Polling تلقائي كل 10 ثوانٍ لاستقبال الرسائل، وزر دعم فني مدمج.\n'
+        '• نظام الإشعارات والتصميم: إشعارات فورية لكل الأحداث (Push Notifications)، دعم كامل للوضعين الداكن والفاتح (Dark/Light Mode)، دعم RTL/LTR (العربية والإنجليزية) بالكامل، معالجة استثنائية لحالات الشبكة (Loading, Error, Empty States)، وتصميم Material Design 3 سلس وموحد.\n\n'
+        '⚙️ ثانياً: الـ Back-End (Node.js + PostgreSQL):\n'
+        '• قاعدة البيانات والمعمارية: PostgreSQL كقاعدة بيانات علاقية مع Schema متكاملة تضم 17+ جدولاً (users, buildings, scans, reports, requests, bids, contracts, contract_messages, contract_updates, disputes, reviews, support_tickets, ticket_replies, notifications, audit_logs, flagged_messages, deleted_users).\n'
+        '• منظومة الأمان: JWT Authentication مع Refresh Token، RBAC متعدد الطبقات، خوارزمية كشف التحايل (Fraud Detection Engine) لكشف محاولات مشاركة أرقام الهواتف أو الاتصال الخارجي، و Rate Limiting & Validation لكافة الـ Endpoints.\n'
+        '• APIs المبنية (+100 Endpoint): تشمل المصادقة، إدارة المستخدمين والمباني، الفحص والتقارير، عروض السوق والعقود، المحادثات والمرفقات، الدعم الإداري والنزاعات، والإشعارات.\n\n'
+        '🛡️ ثالثاً: لوحة تحكم الأدمن (Admin Panel):\n'
+        'بناء لوحة تحكم إدارية شاملة تضم +12 شاشة إدارية منفصلة: لوحة المؤشرات (Dashboard KPIs الحية)، إدارة وبحث المستخدمين، قائمة انتظار التوثيق (Verification Queue)، مراجعة مشاريع السوق (Marketplace Review)، إدارة وتصفية النزاعات (Dispute Resolution)، رقابة المحادثات (Contract Chats Monitor)، الرسائل المخالفة والاحتيال (Flagged Messages)، تذاكر الدعم الفني (Support Tickets)، مركز الإشعارات الجماعية، الخريطة الحرارية للأضرار (Damage Heatmap)، إدارة الصلاحيات (RBAC)، استخراج التقرير الإحصائي للنظام، وأرشيف الحسابات المحذوفة.\n\n'
+        '🤖 رابعاً: نموذج الذكاء الاصطناعي (AI Model):\n'
+        '• تدريب نموذج شبكات عصبية على آلاف الصور الفعلية للتصدعات الخرسانية والإنشائية.\n'
+        '• تحويل النموذج من PyTorch إلى صيغة ONNX لتشغيله مباشرة في Node.js عبر ONNX Runtime.\n'
+        '• تحليل الصور: تصنيف النوع، تقدير مساحة التصدع، نسبة الخطورة، وتوليد Heatmap بصري.\n'
+        '• دعم التشغيل المحلي (On-Device) والسحابي (Cloud) حسب إمكانيات الجهاز.\n\n'
+        '📐 معمارية النظام (System Architecture):\n'
+        'نمط Clean Layered Architecture مع فصل تام بين UI Layer, State Layer (Provider), Repository Layer, و Network Layer (Dio + Interceptors).\n\n'
+        '📊 الأرقام والإحصائيات:\n'
+        '• دقة نموذج الذكاء الاصطناعي: +94.5%\n'
+        '• عدد الشاشات التفاعلية: +25 شاشة\n'
+        '• عدد API Endpoints: +100 endpoint\n'
+        '• جداول قاعدة البيانات: +17 جدول\n'
+        '• أخطاء تحليليّة (Dart Analyze): 0 Errors\n\n'
+        '🧰 قائمة التقنيات الكاملة:\n'
+        '• Flutter & Dart: Provider, Dio, SharedPreferences, fl_chart, file_picker, url_launcher, image_picker, flutter_localizations.\n'
+        '• Node.js & Back-End: Express.js, PostgreSQL, JWT, Bcrypt, Multer, Cloudinary, ONNX Runtime.\n'
+        '• AI & Python: PyTorch, OpenCV, ONNX Export Tools, NumPy.\n'
+        '• DevOps & Tools: Git, Postman, pgAdmin, VS Code, Android Studio.',
     images: [
-      'assets/Projects/Wesal Qoran/1.jpeg',
-      'assets/Projects/Wesal Qoran/2.jpeg', // مسار صورة إضافية
-      'assets/Projects/Wesal Qoran/3.jpeg', // مسار صورة ثالثة
+      'assets/Projects/CrackDetectX/1.jpeg',
+      'assets/Projects/CrackDetectX/Picture1.png',
+      'assets/Projects/CrackDetectX/Picture2.png',
+      'assets/Projects/CrackDetectX/Picture3.png',
+      'assets/Projects/CrackDetectX/Picture4.png',
+      'assets/Projects/CrackDetectX/Picture5.png',
+      'assets/Projects/CrackDetectX/Picture6.png',
+      'assets/Projects/CrackDetectX/Picture7.png',
+      'assets/Projects/CrackDetectX/Picture8.png',
+      'assets/Projects/CrackDetectX/Picture9.png',
+      'assets/Projects/CrackDetectX/Picture11.png',
+      'assets/Projects/CrackDetectX/Picture12.png',
+      'assets/Projects/CrackDetectX/Picture13.png',
+      'assets/Projects/CrackDetectX/Picture14.png',
+      'assets/Projects/CrackDetectX/Picture15.png',
+      'assets/Projects/CrackDetectX/Picture16.png',
+      'assets/Projects/CrackDetectX/Picture17.png',
+      'assets/Projects/CrackDetectX/Picture18.png',
+      'assets/Projects/CrackDetectX/Picture19.png',
+      'assets/Projects/CrackDetectX/Picture20.png',
+      'assets/Projects/CrackDetectX/Picture21.png',
+      'assets/Projects/CrackDetectX/Picture22.png',
+      'assets/Projects/CrackDetectX/Picture23.png',
+      'assets/Projects/CrackDetectX/Picture24.png',
+      'assets/Projects/CrackDetectX/Picture25.png',
+      'assets/Projects/CrackDetectX/Picture26.png',
+      'assets/Projects/CrackDetectX/Picture27.png',
+      'assets/Projects/CrackDetectX/Picture28.png',
+      'assets/Projects/CrackDetectX/Picture29.png',
+      'assets/Projects/CrackDetectX/Picture30.png',
+      'assets/Projects/CrackDetectX/Picture31.png',
+      'assets/Projects/CrackDetectX/Picture32.png',
+      'assets/Projects/CrackDetectX/Picture33.png',
+      'assets/Projects/CrackDetectX/Picture34.png',
+      'assets/Projects/CrackDetectX/Picture35.png',
+      'assets/Projects/CrackDetectX/Picture36.png',
+      'assets/Projects/CrackDetectX/Picture37.png',
+      'assets/Projects/CrackDetectX/Picture38.png',
+      'assets/Projects/CrackDetectX/Picture39.png',
+      'assets/Projects/CrackDetectX/Picture40.png',
     ],
     techStack: [
-      'Python',
-      'TensorFlow',
+      'Flutter & Dart',
+      'Provider & Dio',
+      'Node.js & Express',
+      'PostgreSQL',
+      'ONNX & PyTorch',
       'OpenCV',
-      'Flutter',
-      'Deep Learning',
-      'Computer Vision',
+      'JWT & RBAC',
+      'Material Design 3',
     ],
     category: 'AI & Mobile Applications',
     date: DateTime(2025, 11, 15),
     githubUrl: 'https://github.com/WaleedAbozeid/crackdetectx',
-  ),*/
+  ),
   Project(
     id: '4',
     title: 'برنامج الحديث - Hadith App',
