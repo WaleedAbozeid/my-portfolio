@@ -640,7 +640,7 @@ class ProjectDetailsPage extends StatelessWidget {
   }
 
   Future<void> _launchWhatsApp(String phoneNumber, Project proj) async {
-    final message = 'مرحبا، أنا مهتم بشراء تطبيق ${proj.title}';
+    final message = 'أنا مهتم بشراء تطبيق ${proj.title}';
     final whatsappUrl =
         'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}';
     final uri = Uri.parse(whatsappUrl);
