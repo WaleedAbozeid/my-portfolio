@@ -164,7 +164,7 @@ class HeroSection extends StatelessWidget {
                           ),
                           OutlinedButton.icon(
                             onPressed: () {
-                              _launchUrl('https://drive.google.com/file/d/YOUR_CV_FILE_ID/view?usp=sharing');
+                              _launchUrl('assets/Profile/Waleed_Abouzeid_Resume.pdf');
                             },
                             icon: const Icon(Icons.download, size: 18),
                             label: Text(

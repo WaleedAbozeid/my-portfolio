@@ -166,7 +166,7 @@ class ProjectDetailsPage extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: [
-          // 1. Cinematic Blurred Background (Fills the sides)
+          // 1. Cinematic Blurred Background (Fills the entire hero section dynamically)
           if (proj.images.isNotEmpty)
             Positioned.fill(
               child: ImageFiltered(
@@ -179,11 +179,11 @@ class ProjectDetailsPage extends StatelessWidget {
           Positioned.fill(
             child: Container(
               color: (isDark ? const Color(0xff091122) : const Color(0xfff0f2f5))
-                  .withValues(alpha: 0.6),
+                  .withValues(alpha: 0.65),
             ),
           ),
 
-          // Subtle Bottom Gradient to blend into background
+          // 3. Subtle Bottom Gradient to blend into background
           Positioned(
             bottom: 0,
             left: 0,
@@ -203,71 +203,91 @@ class ProjectDetailsPage extends StatelessWidget {
             ),
           ),
 
-          // 3. Main Sharp Image(s) with dynamic height
-          // We let this padding determine the overall height of the Stack
-          if (proj.images.isNotEmpty)
-            Padding(
-              padding: EdgeInsets.only(
-                top: responsive.isMobile ? 240 : 280, // Push down below title block
-                bottom: responsive.isMobile ? 60 : 80,
-              ),
-              child: _buildHeroImages(context, proj, responsive),
+          // 4. Foreground Content: Title Box + Hero Images in normal sequential flow
+          Padding(
+            padding: EdgeInsets.only(
+              top: responsive.isMobile ? 80 : 100, // Space below transparent AppBar
+              bottom: responsive.isMobile ? 40 : 60,
             ),
-
-          // Central Glassmorphism Title Box
-          Positioned(
-            top: responsive.isMobile ? 80 : 100,
-            left: 0,
-            right: 0,
-            child: Align(
-              alignment: Alignment.center,
-              child: FadeInDown(
-                duration: const Duration(milliseconds: 800),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: responsive.isMobile ? 32 : 64,
-                        vertical: responsive.isMobile ? 24 : 32,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Central Glassmorphism Title Box
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: responsive.isMobile ? 16 : 32,
+                    ),
+                    constraints: BoxConstraints(
+                      maxWidth: responsive.getMaxWidth(
+                        mobile: double.infinity,
+                        tablet: 750,
+                        desktop: 900,
                       ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.15),
+                    ),
+                    child: FadeInDown(
+                      duration: const Duration(milliseconds: 800),
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          width: 1.5,
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: responsive.isMobile ? 20 : 48,
+                              vertical: responsive.isMobile ? 18 : 28,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.3),
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  proj.title,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.displayMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        letterSpacing: responsive.isMobile ? 0.5 : 2.0,
+                                        fontSize: responsive.isMobile
+                                            ? 20
+                                            : responsive.isTablet
+                                                ? 26
+                                                : 32,
+                                      ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  proj.description,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.titleMedium
+                                      ?.copyWith(
+                                        color: Colors.white.withValues(alpha: 0.9),
+                                        fontSize: responsive.isMobile ? 13 : 15,
+                                        height: 1.4,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            proj.title,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.displayMedium
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 2.0,
-                                ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            proj.description,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.titleMedium
-                                ?.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.9),
-                                ),
-                          ),
-                        ],
                       ),
                     ),
                   ),
                 ),
-              ),
+
+                SizedBox(height: responsive.isMobile ? 20 : 32),
+
+                // Main Sharp Image(s)
+                if (proj.images.isNotEmpty)
+                  _buildHeroImages(context, proj, responsive),
+              ],
             ),
           ),
         ],
@@ -283,21 +303,42 @@ class ProjectDetailsPage extends StatelessWidget {
     final images = proj.images;
     if (images.isEmpty) return const SizedBox();
 
-    // Determine target height based on category. mobile apps get massive heights to see them clearly!
-    final isMobileApp = proj.category == 'Mobile Apps';
+    // Determine target height based on category
+    final isMobileApp = proj.category == 'Mobile Apps' || proj.category == 'AI & Mobile Applications';
     final targetHeight = isMobileApp 
-        ? (responsive.isMobile ? 550.0 : 700.0) 
-        : (responsive.isMobile ? 250.0 : 400.0);
+        ? (responsive.isMobile ? 480.0 : 650.0) 
+        : (responsive.isMobile ? 220.0 : 380.0);
 
     if (images.length == 1) {
       return Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(
+            horizontal: responsive.isMobile ? 16 : 20,
+          ),
           child: GestureDetector(
             onTap: () => _showImageDialog(context, images.first),
-            child: SizedBox(
-              height: targetHeight,
-              child: Image.asset(images.first, fit: BoxFit.contain),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.25),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  height: targetHeight,
+                  child: Image.asset(
+                    images.first,
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -316,16 +357,31 @@ class ProjectDetailsPage extends StatelessWidget {
           children: images.map((img) {
             return Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: responsive.isMobile ? 8 : 16,
+                horizontal: responsive.isMobile ? 6 : 14,
               ),
               child: GestureDetector(
                 onTap: () => _showImageDialog(context, img),
-                child: SizedBox(
-                  height: targetHeight,
-                  child: Image.asset(
-                    img,
-                    fit: BoxFit.contain,
-                    filterQuality: FilterQuality.high,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.25),
+                        blurRadius: 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: SizedBox(
+                      height: targetHeight,
+                      child: Image.asset(
+                        img,
+                        fit: BoxFit.contain,
+                        filterQuality: FilterQuality.high,
+                      ),
+                    ),
                   ),
                 ),
               ),

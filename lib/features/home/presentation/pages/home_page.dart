@@ -5,6 +5,7 @@ import '../widgets/featured_projects.dart';
 import '../widgets/skills_section.dart';
 import '../widgets/freelance_section.dart';
 import '../widgets/cta_section.dart';
+import '../widgets/stats_section.dart';
 import '../../../../shared/widgets/footer.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,6 +17,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           HeroSection(),
+          StatsSection(),
           FeaturedProjects(),
           FreelanceSection(),
           SkillsSection(),
