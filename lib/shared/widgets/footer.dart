@@ -35,7 +35,7 @@ class _FooterState extends State<Footer> {
   void _launchUrl(String url) async {
     final uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 
@@ -218,12 +218,12 @@ class _FooterState extends State<Footer> {
           tooltip: 'GitHub',
         ),
         IconButton(
-          onPressed: () => _launchUrl('https://linkedin.com'),
+          onPressed: () => _launchUrl('https://linkedin.com/in/waleedabozeid'),
           icon: const FaIcon(FontAwesomeIcons.linkedin, size: 20),
           tooltip: 'LinkedIn',
         ),
         IconButton(
-          onPressed: () => _launchUrl('https://x.com'),
+          onPressed: () => _launchUrl('https://x.com/WaleedAbozeid'),
           icon: const FaIcon(FontAwesomeIcons.xTwitter, size: 20),
           tooltip: 'Twitter',
         ),
