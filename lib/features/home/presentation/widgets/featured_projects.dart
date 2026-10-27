@@ -14,11 +14,19 @@ class FeaturedProjects extends StatelessWidget {
     final loc = AppLocalizations.of(context);
     final responsive = Responsive(context);
 
+    // Top 4 flagship projects for home page
+    final featuredProjects = [
+      sampleProjects.firstWhere((p) => p.id == '3', orElse: () => sampleProjects[0]),
+      sampleProjects.firstWhere((p) => p.id == '1', orElse: () => sampleProjects[1]),
+      sampleProjects.firstWhere((p) => p.id == '6', orElse: () => sampleProjects[2]),
+      sampleProjects.firstWhere((p) => p.id == '8', orElse: () => sampleProjects[3]),
+    ];
+
     // Grid columns based on screen width
     final crossAxisCount = responsive.getGridColumns(
       mobile: 1,
       tablet: 2,
-      desktop: 3,
+      desktop: 2,
     );
 
     return Container(
@@ -32,7 +40,9 @@ class FeaturedProjects extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Featured Projects",
+            loc.locale.languageCode == 'ar'
+                ? "مشاريع مميزة"
+                : "Featured Projects",
             textAlign: responsive.isMobile ? TextAlign.center : null,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
@@ -42,7 +52,9 @@ class FeaturedProjects extends StatelessWidget {
           ),
           SizedBox(height: responsive.isMobile ? 12 : 16),
           Text(
-            "Check out some of my recent work",
+            loc.locale.languageCode == 'ar'
+                ? "نماذج مختارة من أحدث أعمالي في تطبيقات الجوال والذكاء الاصطناعي وتحليل البيانات"
+                : "A selection of my recent work across Mobile Apps, AI & Data Analytics",
             textAlign: responsive.isMobile ? TextAlign.center : null,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               fontSize: responsive.isMobile ? 14 : null,
@@ -53,7 +65,7 @@ class FeaturedProjects extends StatelessWidget {
           // Grid or Column based on screen size
           responsive.isMobile
               ? Column(
-                  children: sampleProjects
+                  children: featuredProjects
                       .map(
                         (project) => Padding(
                           padding: EdgeInsets.only(
@@ -74,13 +86,13 @@ class FeaturedProjects extends StatelessWidget {
                     crossAxisCount: crossAxisCount,
                     crossAxisSpacing: responsive.isMobile ? 16 : 24,
                     mainAxisSpacing: responsive.isMobile ? 16 : 24,
-                    childAspectRatio: responsive.isMobile ? 0.75 : 0.8,
+                    childAspectRatio: 0.82,
                   ),
-                  itemCount: sampleProjects.length,
+                  itemCount: featuredProjects.length,
                   itemBuilder: (context, index) {
                     return ProjectCard(
-                      project: sampleProjects[index],
-                      onTap: () => context.go('/projects/${sampleProjects[index].id}'),
+                      project: featuredProjects[index],
+                      onTap: () => context.go('/projects/${featuredProjects[index].id}'),
                     );
                   },
                 ),
@@ -98,9 +110,7 @@ class FeaturedProjects extends StatelessWidget {
             ),
             child: Text(
               loc.translate('home_cta_projects'),
-              style: TextStyle(
-                fontSize: responsive.isMobile ? 14 : null,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
         ],
