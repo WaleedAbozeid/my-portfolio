@@ -6,6 +6,7 @@ import '../../features/projects/presentation/pages/project_details_page.dart';
 import '../../features/contact/presentation/pages/contact_page.dart';
 import '../../features/about/presentation/pages/about_page_new.dart';
 import '../../features/experience/presentation/pages/experience_page.dart';
+import '../../features/not_found/presentation/pages/not_found_page.dart';
 import '../../shared/widgets/navigation/scaffold_with_navbar.dart';
 
 // Private navigator keys
@@ -17,6 +18,7 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/',
+    errorBuilder: (context, state) => const NotFoundPage(),
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
@@ -35,11 +37,6 @@ class AppRouter {
               final projectId = state.pathParameters['id']!;
               return ProjectDetailsPage(projectId: projectId);
             },
-          ),
-          GoRoute(
-            path: '/case-studies',
-            builder: (context, state) =>
-                const Center(child: Text("Case Studies Page")),
           ),
           GoRoute(
             path: '/about',
