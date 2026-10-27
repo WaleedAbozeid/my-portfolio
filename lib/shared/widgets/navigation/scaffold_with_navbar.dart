@@ -126,24 +126,25 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
                     child: Text('مستقل | Mostaql'),
                   ),
                   const PopupMenuItem(
-                    value: 'https://nafedhly.com',
+                    value: 'https://nafezly.com/u/waleed_abozeid',
                     child: Text('نفذلي | Nafedhly'),
                   ),
                   const PopupMenuItem(
-                    value: 'https://kafeel.co',
+                    value: 'https://kafiil.com/u/waleed_abozeid',
                     child: Text('كفيل | Kfeel'),
                   ),
                   const PopupMenuItem(
-                    value: 'https://khamsat.com',
+                    value: 'https://khamsat.com/user/waleidma14587',
                     child: Text('خمسات | Khamsat'),
                   ),
                   const PopupMenuItem(
-                    value: 'https://upwork.com',
+                    value:
+                        'https://www.upwork.com/freelancers/~01e74d9ed0c92cdb88?mp_source=share',
                     child: Text('Upwork'),
                   ),
                   const PopupMenuItem(
                     value: 'https://freelanceyard.com',
-                    child: Text('فيلانس يارد | FreelanceYard'),
+                    child: Text('فريلانس يارد | FreelanceYard'),
                   ),
                 ],
               ),
@@ -211,33 +212,34 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
                           ListTile(
                             title: const Text('نفذلي | Nafedhly'),
                             onTap: () {
-                              _launchUrl('https://nafedhly.com');
+                              _launchUrl('https://nafezly.com/u/waleed_abozeid');
                               Navigator.of(context).pop();
                             },
                           ),
                           ListTile(
                             title: const Text('كفيل | Kfeel'),
                             onTap: () {
-                              _launchUrl('https://kafeel.co');
+                              _launchUrl('https://kafiil.com/u/waleed_abozeid');
                               Navigator.of(context).pop();
                             },
                           ),
                           ListTile(
                             title: const Text('خمسات | Khamsat'),
                             onTap: () {
-                              _launchUrl('https://khamsat.com');
+                              _launchUrl('https://khamsat.com/user/waleidma14587');
                               Navigator.of(context).pop();
                             },
                           ),
                           ListTile(
                             title: const Text('Upwork'),
                             onTap: () {
-                              _launchUrl('https://upwork.com');
+                              _launchUrl(
+                                  'https://www.upwork.com/freelancers/~01e74d9ed0c92cdb88?mp_source=share');
                               Navigator.of(context).pop();
                             },
                           ),
                           ListTile(
-                            title: const Text('فيلانس يارد | FreelanceYard'),
+                            title: const Text('فريلانس يارد | FreelanceYard'),
                             onTap: () {
                               _launchUrl('https://freelanceyard.com');
                               Navigator.of(context).pop();

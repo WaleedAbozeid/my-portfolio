@@ -56,12 +56,12 @@ class FreelanceSection extends StatelessWidget {
             'https://www.upwork.com/freelancers/~01e74d9ed0c92cdb88?mp_source=share',
       ),
       _FreelancePlatform(
-        name: 'فيلانس يارد | FreelanceYard',
+        name: 'فريلانس يارد | FreelanceYard',
         description:
-            'تواصل معي لتنفيذ مشاريعك البرمجية وتحليل البيانات عبر منصة فيلانس يارد.',
+            'تواصل معي لتنفيذ مشاريعك البرمجية وتحليل البيانات عبر منصة فريلانس يارد.',
         icon: FontAwesomeIcons.handshake,
         color: const Color(0xffff6b00),
-        url: 'https://freelanceyard.com/en/account/profile',
+        url: 'https://freelanceyard.com',
       ),
     ];
 
