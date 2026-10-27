@@ -1,11 +1,11 @@
 {
-    "name": "portfolio",
-    "short_name": "portfolio",
+    "name": "Waleed Abozeid Portfolio",
+    "short_name": "Waleed",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0F172A",
+    "theme_color": "#06B6D4",
+    "description": "Waleed Abozeid - Senior Flutter Developer & Data Analyst Portfolio",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
