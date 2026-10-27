@@ -179,7 +179,7 @@ class AboutPageNew extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       _StatCard(
-                        value: '-',
+                        value: '100%',
                         label: AppLocalizations.of(context).translate('about_satisfaction_label'),
                         subtitle: AppLocalizations.of(context).translate('about_satisfaction_sub'),
                       ),
@@ -206,7 +206,7 @@ class AboutPageNew extends StatelessWidget {
                       SizedBox(width: responsive.getSpacing()),
                       Expanded(
                         child: _StatCard(
-                          value: '-',
+                          value: '100%',
                           label: AppLocalizations.of(context).translate('about_satisfaction_label'),
                           subtitle: AppLocalizations.of(context).translate('about_satisfaction_sub'),
                         ),
