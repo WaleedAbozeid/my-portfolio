@@ -42,6 +42,7 @@ final List<Project> sampleProjects = [
     category: 'Mobile Apps',
     date: DateTime(2025, 12, 1),
     githubUrl: 'https://github.com/WaleedAbozeid/wesal-app',
+
     downloadUrl:
         'https://drive.google.com/file/d/1j4prDP66jAvwfe6i5_QqALB4COVHmaWA/view?usp=drive_link', // ضع رابط APK هنا
     // أو استخدم:
@@ -87,7 +88,7 @@ final List<Project> sampleProjects = [
     category: 'Mobile Apps',
     date: DateTime(2024, 1, 1),
     githubUrl: 'https://github.com/WaleedAbozeid/aqsa-app',
-    downloadUrl: 'https://drive.google.com/file/d/.../view?usp=drive_link',
+
   ),
   Project(
     id: '3',
@@ -237,8 +238,8 @@ final List<Project> sampleProjects = [
     category: 'Mobile Apps',
     date: DateTime(2025, 10, 1),
     githubUrl: 'https://github.com/WaleedAbozeid/hadith-app',
-    downloadUrl:
-        'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing', // ضع رابط APK هنا
+
+
   ),
   Project(
     id: '5',
@@ -298,7 +299,7 @@ final List<Project> sampleProjects = [
     category: 'Desktop Applications',
     date: DateTime.now(),
     githubUrl: 'https://github.com/WaleedAbozeid/marhaba-pos',
-    videoUrl: 'https://www.youtube.com',
+
     price: 10000,
     discount: 60,
     whatsappNumber: '201030649525',
