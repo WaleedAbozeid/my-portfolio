@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/utils/responsive.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import 'animated_counter.dart';
 
 /// A premium stats section displayed on the Home page.
@@ -54,6 +55,7 @@ class _StatsSectionState extends State<StatsSection> {
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final loc = AppLocalizations.of(context);
 
     final stats = _buildStats();
 
@@ -85,7 +87,7 @@ class _StatsSectionState extends State<StatsSection> {
               children: [
                 // Section Header
                 Text(
-                  'By the Numbers',
+                  loc.translate('stats_title'),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
@@ -95,7 +97,7 @@ class _StatsSectionState extends State<StatsSection> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Real metrics that reflect my work & experience',
+                  loc.translate('stats_subtitle'),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: isDark ? Colors.white54 : Colors.black45,

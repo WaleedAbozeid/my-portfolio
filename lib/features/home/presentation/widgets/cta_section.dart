@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/utils/responsive.dart';
+import '../../../../core/l10n/app_localizations.dart';
 
 class CtaSection extends StatelessWidget {
   const CtaSection({super.key});
@@ -9,6 +10,7 @@ class CtaSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
+    final loc = AppLocalizations.of(context);
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -37,7 +39,7 @@ class CtaSection extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Let's Work Together",
+                loc.translate('cta_title'),
                 style: Theme.of(
                   context,
                 ).textTheme.displaySmall?.copyWith(
@@ -48,7 +50,7 @@ class CtaSection extends StatelessWidget {
               ),
               SizedBox(height: responsive.isMobile ? 12 : 16),
               Text(
-                "Have a project in mind? Let's discuss how I can help bring your ideas to life.",
+                loc.translate('cta_subtitle'),
                 style: Theme.of(
                   context,
                 ).textTheme.titleMedium?.copyWith(
@@ -65,7 +67,7 @@ class CtaSection extends StatelessWidget {
                   size: responsive.isMobile ? 18 : 20,
                 ),
                 label: Text(
-                  'Get in Touch',
+                  loc.translate('cta_button'),
                   style: TextStyle(
                     fontSize: responsive.isMobile ? 14 : 16,
                     fontWeight: FontWeight.bold,

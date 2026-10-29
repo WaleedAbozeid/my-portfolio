@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/utils/responsive.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../core/l10n/app_localizations.dart';
 
 class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
@@ -9,6 +10,7 @@ class SkillsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
+    final loc = AppLocalizations.of(context);
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -30,7 +32,7 @@ class SkillsSection extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Skills & Technologies',
+                loc.translate('skills_title'),
                 textAlign: responsive.isMobile ? TextAlign.center : null,
                 style: Theme.of(
                   context,
@@ -41,7 +43,7 @@ class SkillsSection extends StatelessWidget {
               ),
               SizedBox(height: responsive.isMobile ? 8 : 12),
               Text(
-                'Technologies and tools I work with',
+                loc.translate('skills_subtitle'),
                 textAlign: responsive.isMobile ? TextAlign.center : null,
                 style: Theme.of(
                   context,
@@ -53,43 +55,43 @@ class SkillsSection extends StatelessWidget {
               SizedBox(height: responsive.isMobile ? 32 : 60),
               responsive.isMobile
                   ? Column(
-                      children: const [
+                      children: [
                         _SkillCard(
                           icon: FontAwesomeIcons.mobile,
-                          title: 'Mobile Development',
-                          subtitle: 'Flutter, Dart, iOS, Android',
+                          title: loc.translate('skill_mobile_title'),
+                          subtitle: loc.translate('skill_mobile_sub'),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         _SkillCard(
                           icon: FontAwesomeIcons.globe,
-                          title: 'Web Development',
-                          subtitle: 'Flutter Web, PWA, REST APIs',
+                          title: loc.translate('skill_web_title'),
+                          subtitle: loc.translate('skill_web_sub'),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         _SkillCard(
                           icon: FontAwesomeIcons.chartLine,
-                          title: 'Data Analysis',
-                          subtitle: 'Python, Data Visualization, Analytics',
+                          title: loc.translate('skill_data_title'),
+                          subtitle: loc.translate('skill_data_sub'),
                         ),
                       ],
                     )
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
+                      children: [
                         _SkillCard(
                           icon: FontAwesomeIcons.mobile,
-                          title: 'Mobile Development',
-                          subtitle: 'Flutter, Dart, iOS, Android',
+                          title: loc.translate('skill_mobile_title'),
+                          subtitle: loc.translate('skill_mobile_sub'),
                         ),
                         _SkillCard(
                           icon: FontAwesomeIcons.globe,
-                          title: 'Web Development',
-                          subtitle: 'Flutter Web, PWA, REST APIs',
+                          title: loc.translate('skill_web_title'),
+                          subtitle: loc.translate('skill_web_sub'),
                         ),
                         _SkillCard(
                           icon: FontAwesomeIcons.chartLine,
-                          title: 'Data Analysis',
-                          subtitle: 'Python, Data Visualization, Analytics',
+                          title: loc.translate('skill_data_title'),
+                          subtitle: loc.translate('skill_data_sub'),
                         ),
                       ],
                     ),
@@ -115,7 +117,7 @@ class _SkillCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
-
+    
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: responsive.isMobile ? 0 : 12,

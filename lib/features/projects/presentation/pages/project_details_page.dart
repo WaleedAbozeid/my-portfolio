@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/constants/colors.dart';
+import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../data/models/project.dart';
 import '../../../../data/projects_data.dart';
@@ -26,12 +27,13 @@ class ProjectDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
+    final loc = AppLocalizations.of(context);
     final proj = project;
 
     if (proj == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Project Not Found')),
-        body: const Center(child: Text('Project not found')),
+        appBar: AppBar(title: Text(loc.translate('project_not_found'))),
+        body: Center(child: Text(loc.translate('project_not_found'))),
       );
     }
 
@@ -53,7 +55,7 @@ class ProjectDetailsPage extends StatelessWidget {
               size: 18,
             ),
             label: Text(
-              "Back to Projects",
+              loc.translate('back_to_projects'),
               style: TextStyle(
                 color: isDark ? Colors.white70 : Colors.black87,
                 fontSize: 13,
@@ -394,10 +396,11 @@ class ProjectDetailsPage extends StatelessWidget {
 
   // --- Column 1: Key Tech Stack ---
   Widget _buildKeyTechStack(BuildContext context, Project proj, bool isDark) {
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle(context, 'Key Technology Stack', isDark),
+        _buildSectionTitle(context, loc.translate('key_tech_stack'), isDark),
         const SizedBox(height: 26),
         Wrap(
           spacing: 20,
@@ -485,7 +488,8 @@ class ProjectDetailsPage extends StatelessWidget {
   }
 
   // --- Column 2: Key Features & Buttons ---
-  Widget _buildKeyFeatures(BuildContext context, Project proj, bool isDark) {
+  Widget _buildKeyFeatures(BuildContext context, Project proj, bool isDark) {
+    final loc = AppLocalizations.of(context);
     // Generate some mock/placeholder feature lines if we don't have explicit ones.
     // In a real app we'd map over `proj.features`
     final List<String> extractedFeatures = [
@@ -498,7 +502,7 @@ class ProjectDetailsPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle(context, 'Key Features', isDark),
+        _buildSectionTitle(context, loc.translate('key_features'), isDark),
         const SizedBox(height: 24),
         ...extractedFeatures.map((feature) {
           return Padding(
@@ -540,42 +544,42 @@ class ProjectDetailsPage extends StatelessWidget {
             if (proj.isPaid)
               _buildModernButton(
                 context,
-                'تواصل الآن عبر الواتساب',
+                loc.translate('contact_via_whatsapp'),
                 const Color(0xff00d166), // Vibrant Green
                 () => _launchWhatsApp(proj.whatsappNumber!, proj),
               ),
             if (proj.liveUrl != null)
               _buildModernButton(
                 context,
-                'View Live Demo',
+                loc.translate('view_live_demo'),
                 const Color(0xffFF7000), // Vibrant Orange
                 () => _launchUrl(proj.liveUrl!),
               ),
             if (proj.downloadUrl != null && !proj.isPaid)
               _buildModernButton(
                 context,
-                'Download APK',
+                loc.translate('download_apk'),
                 const Color(0xff00d166), // Vibrant Green
                 () => _launchUrl(proj.downloadUrl!),
               ),
             if (proj.githubUrl != null)
               _buildModernButton(
                 context,
-                'View Github Repo',
+                loc.translate('view_github_repo'),
                 const Color(0xff1E88E5), // Vibrant Blue
                 () => _launchUrl(proj.githubUrl!),
               ),
             if (proj.playStoreUrl != null)
               _buildModernButton(
                 context,
-                'Play Store',
+                loc.translate('play_store'),
                 const Color(0xff3D5AFE), // Indigo
                 () => _launchUrl(proj.playStoreUrl!),
               ),
             if (proj.appStoreUrl != null)
               _buildModernButton(
                 context,
-                'App Store',
+                loc.translate('app_store'),
                 const Color(0xff1f2937), // Dark Gray
                 () => _launchUrl(proj.appStoreUrl!),
               ),
@@ -700,10 +704,11 @@ class ProjectDetailsPage extends StatelessWidget {
 
   // --- Column 3: Overview & Tech Chips ---
   Widget _buildOverviewColumn(BuildContext context, Project proj, bool isDark) {
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle(context, 'Overview', isDark),
+        _buildSectionTitle(context, loc.translate('overview'), isDark),
         const SizedBox(height: 24),
         Text(
           proj.fullDescription,
@@ -714,7 +719,7 @@ class ProjectDetailsPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 48),
-        _buildSectionTitle(context, 'Technologies Used', isDark),
+        _buildSectionTitle(context, loc.translate('technologies_used'), isDark),
         const SizedBox(height: 24),
         Wrap(
           spacing: 12,
