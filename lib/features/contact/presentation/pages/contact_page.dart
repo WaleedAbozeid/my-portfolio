@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/l10n/app_localizations.dart';
+import '../../../../core/services/contact_service.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../shared/widgets/footer.dart';
 
@@ -24,46 +25,83 @@ class _ContactPageState extends State<ContactPage> {
       setState(() => _isLoading = true);
 
       final values = _formKey.currentState!.value;
-      final name = values['name'] ?? '';
-      final email = values['email'] ?? '';
-      final subject = values['subject'] ?? '';
-      final message = values['message'] ?? '';
+      final name = values['name']?.toString() ?? '';
+      final email = values['email']?.toString() ?? '';
+      final subject = values['subject']?.toString() ?? '';
+      final message = values['message']?.toString() ?? '';
+      final botcheck = values['botcheck']?.toString() ?? '';
 
-      final mailtoUri = Uri(
-        scheme: 'mailto',
-        path: 'waleedabozeid995@gmail.com',
-        queryParameters: {
-          'subject': subject,
-          'body': 'Name: $name\nEmail: $email\n\nMessage:\n$message',
-        },
-      );
+      // Anti-spam honeypot verification
+      if (botcheck.trim().isNotEmpty) {
+        setState(() => _isLoading = false);
+        return;
+      }
 
+      bool isSent = false;
       try {
-        if (await canLaunchUrl(mailtoUri)) {
-          await launchUrl(mailtoUri);
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Message draft opened in email client!'),
+        isSent = await ContactService.sendMessage(
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
+          botcheck: botcheck,
+        );
+      } catch (_) {
+        isSent = false;
+      }
+
+      if (mounted) {
+        final loc = AppLocalizations.of(context);
+        final messenger = ScaffoldMessenger.of(context);
+        if (isSent) {
+          messenger.showSnackBar(
+            SnackBar(
+              backgroundColor: const Color(0xff10B981),
+              behavior: SnackBarBehavior.floating,
+              content: Row(
+                children: [
+                  const Icon(Icons.check_circle, color: Colors.white),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      loc.translate('contact_success'),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+          _formKey.currentState?.reset();
+        } else {
+          // Graceful fallback to email client if Web3Forms key is not yet set or offline
+          final mailtoUri = Uri(
+            scheme: 'mailto',
+            path: ContactService.receiverEmail,
+            queryParameters: {
+              'subject': subject,
+              'body': 'Name: $name\nEmail: $email\n\nMessage:\n$message',
+            },
+          );
+          if (await canLaunchUrl(mailtoUri)) {
+            await launchUrl(mailtoUri, mode: LaunchMode.externalApplication);
+          } else {
+            messenger.showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.redAccent,
+                behavior: SnackBarBehavior.floating,
+                content: Text(
+                  loc.translate('contact_error'),
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
             );
           }
-        } else {
-          throw 'Could not launch mail client';
         }
-      } catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Error launching email: $e'),
-            ),
-          );
-        }
-      } finally {
-        if (mounted) {
-          setState(() => _isLoading = false);
-          _formKey.currentState?.reset();
-        }
+        setState(() => _isLoading = false);
       }
     }
   }
@@ -182,6 +220,14 @@ class _ContactPageState extends State<ContactPage> {
                             key: _formKey,
                             child: Column(
                               children: [
+                                // Hidden honeypot field to trap spam bots
+                                Visibility(
+                                  visible: false,
+                                  maintainState: true,
+                                  child: FormBuilderTextField(
+                                    name: 'botcheck',
+                                  ),
+                                ),
                                 FormBuilderTextField(
                                   name: 'name',
                                   decoration: InputDecoration(
@@ -232,8 +278,13 @@ class _ContactPageState extends State<ContactPage> {
                                       foregroundColor: Colors.white,
                                     ),
                                     child: _isLoading
-                                        ? const CircularProgressIndicator(
-                                            color: Colors.white,
+                                        ? const SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                              color: Colors.white,
+                                            ),
                                           )
                                         : Text(
                                             loc.translate('contact_submit'),
