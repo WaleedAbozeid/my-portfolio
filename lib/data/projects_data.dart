@@ -1,95 +1,7 @@
 import 'models/project.dart';
 
 final List<Project> sampleProjects = [
-  Project(
-    id: '1',
-    title: 'نهج المؤمن ',
-    description: 'تطبيق القرآن الكريم الشامل مع التجويد والتفسير',
-    fullDescription:
-        'تطبيق نهج المؤمن  هو تطبيق متكامل للقرآن الكريم يوفر تجربة قراءة مميزة مع أحكام التجويد، التفسير الميسر، وإمكانية الاستماع للتلاوات. يتضمن التطبيق واجهة سهلة الاستخدام، وضع الليل/النهار، والعديد من المميزات الأخرى لتحسين تجربة قراءة القرآن.',
-    images: [
-      'assets/Projects/Wesal Qoran/Picture1.png',
-      'assets/Projects/Wesal Qoran/Picture2.png',
-      'assets/Projects/Wesal Qoran/Picture3.png',
-      'assets/Projects/Wesal Qoran/Picture4.png',
-      'assets/Projects/Wesal Qoran/Picture5.png',
-      'assets/Projects/Wesal Qoran/Picture6.png',
-      'assets/Projects/Wesal Qoran/Picture7.png',
-      'assets/Projects/Wesal Qoran/Picture8.png',
-      'assets/Projects/Wesal Qoran/Picture9.png',
-      'assets/Projects/Wesal Qoran/Picture10.png',
-      'assets/Projects/Wesal Qoran/Picture11.png',
-      'assets/Projects/Wesal Qoran/Picture12.png',
-      'assets/Projects/Wesal Qoran/Picture13.png',
-      'assets/Projects/Wesal Qoran/Picture14.png',
-      'assets/Projects/Wesal Qoran/Picture15.png',
-      'assets/Projects/Wesal Qoran/Picture16.png',
-      'assets/Projects/Wesal Qoran/Picture17.png',
-      'assets/Projects/Wesal Qoran/Picture18.png',
-      'assets/Projects/Wesal Qoran/Picture19.png',
-      'assets/Projects/Wesal Qoran/Picture20.png',
-      'assets/Projects/Wesal Qoran/Picture21.png',
-      'assets/Projects/Wesal Qoran/Picture22.png',
-      'assets/Projects/Wesal Qoran/Picture23.png',
-      'assets/Projects/Wesal Qoran/Picture24.png',
-      'assets/Projects/Wesal Qoran/Picture25.png',
-      'assets/Projects/Wesal Qoran/Picture26.png',
-      'assets/Projects/Wesal Qoran/Picture27.png',
-      'assets/Projects/Wesal Qoran/Picture28.png',
-    ],
-
-    techStack: ['Flutter', 'Dart', 'Provider', 'SQLite', 'Audio Player'],
-    category: 'Mobile Apps',
-    date: DateTime(2025, 12, 1),
-    githubUrl: 'https://github.com/WaleedAbozeid/wesal-app',
-
-    downloadUrl:
-        'https://drive.google.com/file/d/1j4prDP66jAvwfe6i5_QqALB4COVHmaWA/view?usp=drive_link', // ضع رابط APK هنا
-    // أو استخدم:
-    // playStoreUrl: 'https://play.google.com/store/apps/details?id=com.yourapp.wesal',
-    // appStoreUrl: 'https://apps.apple.com/app/wesal/id123456789',
-  ),
-  Project(
-    id: '2',
-    title: 'Aqsa (الأقصى) - تطبيق إسلامي شامل لأوقات الصلاة والآذان 🕌',
-    description:
-        'تطبيق إسلامي متكامل لمواقيت الصلاة الدقيقة، اتجاه القبلة، وإشعارات الآذان المخصصة.',
-    fullDescription:
-        'تطبيق "الأقصى" هو تطبيق إسلامي متكامل تم تطويره باستخدام إطار عمل Flutter لتزويد المستخدمين بمواقيت الصلاة الدقيقة، اتجاه القبلة، وتجربة تنبيهات وإشعارات مخصصة. صُمم التطبيق ليكون رفيقاً يومياً للمسلم، مع التركيز على الأداء السلس، الاستهلاك المنخفض للموارد (Offline first)، وإمكانية التخصيص الكاملة لكل مستخدم.\n\n'
-        'المميزات الرئيسية:\n'
-        '1. نظام دقيق لحساب مواقيت الصلاة: استخدام خطوط الطول والعرض لحساب أوقات الصلوات الخمس بدقة يومياً استناداً إلى مكتبة adhan. مؤقت ذكي وتنازلي يعرض الوقت المتبقي للصلاة القادمة.\n'
-        '2. إشعارات الآذان المحلية: جدولة تلقائية للإشعارات دون الحاجة للاتصال بالإنترنت. التكامل مع مكتبة timezone لضمان عمل الإشعارات بدقة. إمكانية تشغيل وإيقاف تنبيهات الآذان لكل صلاة بشكل منفصل.\n'
-        '3. تحديد القبلة الذكي: بوصلة تفاعلية وسريعة الاستجابة تعمل عن طريق مستشعرات الجهاز لمعرفة اتجاه القبلة بدقة. تحديث الاتجاه بشكل لحظي بناءً على حركة هاتف المستخدم.\n'
-        '4. تخصيص المؤذنين والصوتيات: ميزة اختيار صوت مؤذن محدد. إمكانية تخصيص صوت أذان مخصص لكل صلاة على حدة.\n'
-        '5. إدارة الموقع الجغرافي المتقدمة: التحديد التلقائي عبر GPS، التحديد اليدوي، والمواقع المحفوظة للتبديل السريع.\n\n'
-        'المميزات الفرعية: طرق الحساب المعتمدة، المذاهب الفقهية، إدارة واجهة المستخدم مع Provider.\n\n'
-        'التقنيات: Flutter & Dart، Provider، Shared Preferences، flutter_local_notifications، audioplayers، geolocator، geocoding، flutter_compass، adhan.',
-    images: [
-      'assets/Projects/aqsa/3.png',
-      'assets/Projects/aqsa/2.png',
-      'assets/Projects/aqsa/1.png',
-      'assets/Projects/aqsa/4.png',
-      'assets/Projects/aqsa/5.png',
-      'assets/Projects/aqsa/6.png',
-      'assets/Projects/aqsa/7.png',
-    ],
-    techStack: [
-      'Flutter',
-      'Dart',
-      'Provider',
-      'Shared Preferences',
-      'flutter_local_notifications',
-      'audioplayers',
-      'geolocator',
-      'geocoding',
-      'flutter_compass',
-      'adhan',
-    ],
-    category: 'Mobile Apps',
-    date: DateTime(2024, 1, 1),
-    githubUrl: 'https://github.com/WaleedAbozeid/aqsa-app',
-
-  ),
+  // 1. CrackDetectX — أقوى مشروع على الإطلاق (منظومة كاملة: AI + Mobile + Backend + Admin Panel)
   Project(
     id: '3',
     title: '🏗️ CrackDetectX — منصة ذكاء اصطناعي هندسية متكاملة',
@@ -201,53 +113,60 @@ final List<Project> sampleProjects = [
     date: DateTime(2025, 11, 15),
     githubUrl: 'https://github.com/WaleedAbozeid/crackdetectx',
   ),
+
+  // 2. نهج المؤمن — تطبيق متكامل مكتمل برابط تحميل APK فعلي و28 صورة
   Project(
-    id: '4',
-    title: 'برنامج الحديث - Hadith App',
-    description:
-        'تطبيق شامل للأحاديث النبوية يضم أكثر من 50 ألف حديث من كتب أهل السنة الموثوقة.',
+    id: '1',
+    title: 'نهج المؤمن',
+    description: 'تطبيق القرآن الكريم الشامل مع التجويد والتفسير',
     fullDescription:
-        'تطبيق برنامج الحديث هو مكتبة شاملة ومتكاملة للأحاديث النبوية الشريفة، مصنفة من أشهر كتب أهل السنة مثل صحيح البخاري وصحيح مسلم وسنن الترمذي والنسائي وابن ماجه. يوفر التطبيق تجربة بحث وقراءة متقدمة مع واجهة مستخدم سهلة وجميلة.\n\n'
-        '✨ المزايا والمميزات الرئيسية:\n'
-        '• قاعدة بيانات شاملة: أكثر من 50 ألف حديث مصنف من مصادر موثوقة.\n'
-        '• بحث متقدم: البحث السريع عن الأحاديث حسب الكلمات الدالة والراوي والكتاب والباب.\n'
-        '• تصنيفات منظمة: تنظيم الأحاديث حسب الأبواب الفقهية والموضوعات الإسلامية.\n'
-        '• التحقق من الأحاديث: عرض درجة الحديث (صحيح، حسن، ضعيف) مع بيانات المحدثين.\n'
-        '• حفظ المفضلة: إمكانية حفظ وتعليم الأحاديث المهمة للعودة إليها لاحقاً.\n'
-        '• عرض تفصيلي: معلومات كاملة عن كل حديث (الراوي، الكتاب، رقم الحديث، الشرح).\n'
-        '• دعم كامل للغة العربية: واجهة بالعربية مع دعم RTL وخطوط عربية جميلة.\n'
-        '• وضع بدون إنترنت: جميع الأحاديث محفوظة محلياً للوصول إليها في أي وقت.',
+        'تطبيق نهج المؤمن هو تطبيق متكامل للقرآن الكريم يوفر تجربة قراءة مميزة مع أحكام التجويد، التفسير الميسر، وإمكانية الاستماع للتلاوات. يتضمن التطبيق واجهة سهلة الاستخدام، وضع الليل/النهار، والعديد من المميزات الأخرى لتحسين تجربة قراءة القرآن.',
     images: [
-      'assets/Projects/hadith/0.jpeg',
-      'assets/Projects/hadith/1.jpeg',
-      'assets/Projects/hadith/2.jpeg',
-      'assets/Projects/hadith/3.jpeg',
-      'assets/Projects/hadith/4.jpeg',
-      'assets/Projects/hadith/5.jpeg',
-      'assets/Projects/hadith/6.jpeg',
-      'assets/Projects/hadith/7.jpeg',
+      'assets/Projects/Wesal Qoran/Picture1.png',
+      'assets/Projects/Wesal Qoran/Picture2.png',
+      'assets/Projects/Wesal Qoran/Picture3.png',
+      'assets/Projects/Wesal Qoran/Picture4.png',
+      'assets/Projects/Wesal Qoran/Picture5.png',
+      'assets/Projects/Wesal Qoran/Picture6.png',
+      'assets/Projects/Wesal Qoran/Picture7.png',
+      'assets/Projects/Wesal Qoran/Picture8.png',
+      'assets/Projects/Wesal Qoran/Picture9.png',
+      'assets/Projects/Wesal Qoran/Picture10.png',
+      'assets/Projects/Wesal Qoran/Picture11.png',
+      'assets/Projects/Wesal Qoran/Picture12.png',
+      'assets/Projects/Wesal Qoran/Picture13.png',
+      'assets/Projects/Wesal Qoran/Picture14.png',
+      'assets/Projects/Wesal Qoran/Picture15.png',
+      'assets/Projects/Wesal Qoran/Picture16.png',
+      'assets/Projects/Wesal Qoran/Picture17.png',
+      'assets/Projects/Wesal Qoran/Picture18.png',
+      'assets/Projects/Wesal Qoran/Picture19.png',
+      'assets/Projects/Wesal Qoran/Picture20.png',
+      'assets/Projects/Wesal Qoran/Picture21.png',
+      'assets/Projects/Wesal Qoran/Picture22.png',
+      'assets/Projects/Wesal Qoran/Picture23.png',
+      'assets/Projects/Wesal Qoran/Picture24.png',
+      'assets/Projects/Wesal Qoran/Picture25.png',
+      'assets/Projects/Wesal Qoran/Picture26.png',
+      'assets/Projects/Wesal Qoran/Picture27.png',
+      'assets/Projects/Wesal Qoran/Picture28.png',
     ],
-    techStack: [
-      'Flutter',
-      'Dart',
-      'SQLite',
-      'GetX',
-      'Responsive Design',
-      'Arabic Localization',
-    ],
+    techStack: ['Flutter', 'Dart', 'Provider', 'SQLite', 'Audio Player'],
     category: 'Mobile Apps',
-    date: DateTime(2025, 10, 1),
-    githubUrl: 'https://github.com/WaleedAbozeid/hadith-app',
-
-
+    date: DateTime(2025, 12, 1),
+    githubUrl: 'https://github.com/WaleedAbozeid/wesal-app',
+    downloadUrl:
+        'https://drive.google.com/file/d/1j4prDP66jAvwfe6i5_QqALB4COVHmaWA/view?usp=drive_link',
   ),
+
+  // 3. POS — تطبيق ديسكتوب لنظام Windows وطباعة حرارية ونظام تجاري كامل
   Project(
     id: '5',
-    title: 'POS',
+    title: 'POS — نظام إدارة المطاعم والمبيعات',
     description:
         'تطبيق إدارة مطعم كامل لأنظمة Windows، يدعم العربية والشاشات اللمسية والطباعة الحرارية.',
     fullDescription:
-      'POS هو تطبيق إدارة مطعم كامل مطور باستخدام Flutter Desktop لأنظمة Windows. التطبيق مصمم لإدارة جميع عمليات المطعم من الطلبات إلى الدفع، مع دعم كامل للغة العربية وواجهة مستخدم مرنة تعمل على الشاشات اللمسية، الفأرة، ولوحة المفاتيح.\n\n'
+        'POS هو تطبيق إدارة مطعم كامل مطور باستخدام Flutter Desktop لأنظمة Windows. التطبيق مصمم لإدارة جميع عمليات المطعم من الطلبات إلى الدفع، مع دعم كامل للغة العربية وواجهة مستخدم مرنة تعمل على الشاشات اللمسية، الفأرة، ولوحة المفاتيح.\n\n'
         '✨ المزايا والمميزات الرئيسية:\n'
         '• إدارة المستخدمين والصلاحيات (مدير، كاشير، مطبخ، سائق).\n'
         '• إدارة القائمة وأسعار الأصناف بشكل مرن ومتعدد اللغات.\n'
@@ -297,15 +216,16 @@ final List<Project> sampleProjects = [
       'Material Design',
     ],
     category: 'Desktop Applications',
-    date: DateTime.now(),
+    date: DateTime(2025, 9, 1),
     githubUrl: 'https://github.com/WaleedAbozeid/marhaba-pos',
-
     price: 10000,
     discount: 60,
     whatsappNumber: '201030649525',
   ),
+
+  // 4. Top Tube — تطبيق وسائط متقدم بـ Riverpod و FFmpeg Kit
   Project(
-    id: '6', // تأكد من وضع الـ ID المناسب حسب التسلسل لديك
+    id: '6',
     title: 'Top Tube - Video Downloader',
     description:
         'تطبيق متقدم لتشغيل وتحميل مقاطع الفيديو والصوتيات بجودة عالية، مع أدوات مدمجة لإدارة وتعديل الوسائط.',
@@ -330,17 +250,128 @@ final List<Project> sampleProjects = [
     techStack: [
       'Flutter',
       'Dart',
-      'Riverpod', // إدارة الحالة المستخدمة
-      'FFmpeg Kit', // ميزة قوية جداً تضاف للسيرة الذاتية
+      'Riverpod',
+      'FFmpeg Kit',
       'Dio',
       'SQLite',
       'Video Player & Just Audio',
     ],
     category: 'Mobile Apps',
-    date: DateTime(2026, 4, 1), // يمكنك تعديل تاريخ الانتهاء من المشروع
-    githubUrl:
-        'https://github.com/WaleedAbozeid/top-tube', // ضع الرابط الخاص بك
+    date: DateTime(2026, 4, 1),
+    githubUrl: 'https://github.com/WaleedAbozeid/top-tube',
   ),
+
+  // 5. الأقصى — تطبيق إسلامي معقد يعتمد على الحسابات الفلكية و GPS والبوصلة
+  Project(
+    id: '2',
+    title: 'Aqsa (الأقصى) - تطبيق إسلامي شامل لأوقات الصلاة والآذان 🕌',
+    description:
+        'تطبيق إسلامي متكامل لمواقيت الصلاة الدقيقة، اتجاه القبلة، وإشعارات الآذان المخصصة.',
+    fullDescription:
+        'تطبيق "الأقصى" هو تطبيق إسلامي متكامل تم تطويره باستخدام إطار عمل Flutter لتزويد المستخدمين بمواقيت الصلاة الدقيقة، اتجاه القبلة، وتجربة تنبيهات وإشعارات مخصصة. صُمم التطبيق ليكون رفيقاً يومياً للمسلم، مع التركيز على الأداء السلس، الاستهلاك المنخفض للموارد (Offline first)، وإمكانية التخصيص الكاملة لكل مستخدم.\n\n'
+        'المميزات الرئيسية:\n'
+        '1. نظام دقيق لحساب مواقيت الصلاة: استخدام خطوط الطول والعرض لحساب أوقات الصلوات الخمس بدقة يومياً استناداً إلى مكتبة adhan. مؤقت ذكي وتنازلي يعرض الوقت المتبقي للصلاة القادمة.\n'
+        '2. إشعارات الآذان المحلية: جدولة تلقائية للإشعارات دون الحاجة للاتصال بالإنترنت. التكامل مع مكتبة timezone لضمان عمل الإشعارات بدقة. إمكانية تشغيل وإيقاف تنبيهات الآذان لكل صلاة بشكل منفصل.\n'
+        '3. تحديد القبلة الذكي: بوصلة تفاعلية وسريعة الاستجابة تعمل عن طريق مستشعرات الجهاز لمعرفة اتجاه القبلة بدقة. تحديث الاتجاه بشكل لحظي بناءً على حركة هاتف المستخدم.\n'
+        '4. تخصيص المؤذنين والصوتيات: ميزة اختيار صوت مؤذن محدد. إمكانية تخصيص صوت أذان مخصص لكل صلاة على حدة.\n'
+        '5. إدارة الموقع الجغرافي المتقدمة: التحديد التلقائي عبر GPS، التحديد اليدوي، والمواقع المحفوظة للتبديل السريع.\n\n'
+        'المميزات الفرعية: طرق الحساب المعتمدة، المذاهب الفقهية، إدارة واجهة المستخدم مع Provider.\n\n'
+        'التقنيات: Flutter & Dart، Provider، Shared Preferences، flutter_local_notifications، audioplayers، geolocator، geocoding، flutter_compass، adhan.',
+    images: [
+      'assets/Projects/aqsa/3.png',
+      'assets/Projects/aqsa/2.png',
+      'assets/Projects/aqsa/1.png',
+      'assets/Projects/aqsa/4.png',
+      'assets/Projects/aqsa/5.png',
+      'assets/Projects/aqsa/6.png',
+      'assets/Projects/aqsa/7.png',
+    ],
+    techStack: [
+      'Flutter',
+      'Dart',
+      'Provider',
+      'Shared Preferences',
+      'flutter_local_notifications',
+      'audioplayers',
+      'geolocator',
+      'geocoding',
+      'flutter_compass',
+      'adhan',
+    ],
+    category: 'Mobile Apps',
+    date: DateTime(2024, 1, 1),
+    githubUrl: 'https://github.com/WaleedAbozeid/aqsa-app',
+  ),
+
+  // 6. تطبيق الحديث — قاعدة بيانات محلية ضخمة (+50 ألف حديث)
+  Project(
+    id: '4',
+    title: 'برنامج الحديث - Hadith App',
+    description:
+        'تطبيق شامل للأحاديث النبوية يضم أكثر من 50 ألف حديث من كتب أهل السنة الموثوقة.',
+    fullDescription:
+        'تطبيق برنامج الحديث هو مكتبة شاملة ومتكاملة للأحاديث النبوية الشريفة، مصنفة من أشهر كتب أهل السنة مثل صحيح البخاري وصحيح مسلم وسنن الترمذي والنسائي وابن ماجه. يوفر التطبيق تجربة بحث وقراءة متقدمة مع واجهة مستخدم سهلة وجميلة.\n\n'
+        '✨ المزايا والمميزات الرئيسية:\n'
+        '• قاعدة بيانات شاملة: أكثر من 50 ألف حديث مصنف من مصادر موثوقة.\n'
+        '• بحث متقدم: البحث السريع عن الأحاديث حسب الكلمات الدالة والراوي والكتاب والباب.\n'
+        '• تصنيفات منظمة: تنظيم الأحاديث حسب الأبواب الفقهية والموضوعات الإسلامية.\n'
+        '• التحقق من الأحاديث: عرض درجة الحديث (صحيح، حسن، ضعيف) مع بيانات المحدثين.\n'
+        '• حفظ المفضلة: إمكانية حفظ وتعليم الأحاديث المهمة للعودة إليها لاحقاً.\n'
+        '• عرض تفصيلي: معلومات كاملة عن كل حديث (الراوي، الكتاب، رقم الحديث، الشرح).\n'
+        '• دعم كامل للغة العربية: واجهة بالعربية مع دعم RTL وخطوط عربية جميلة.\n'
+        '• وضع بدون إنترنت: جميع الأحاديث محفوظة محلياً للوصول إليها في أي وقت.',
+    images: [
+      'assets/Projects/hadith/0.jpeg',
+      'assets/Projects/hadith/1.jpeg',
+      'assets/Projects/hadith/2.jpeg',
+      'assets/Projects/hadith/3.jpeg',
+      'assets/Projects/hadith/4.jpeg',
+      'assets/Projects/hadith/5.jpeg',
+      'assets/Projects/hadith/6.jpeg',
+      'assets/Projects/hadith/7.jpeg',
+    ],
+    techStack: [
+      'Flutter',
+      'Dart',
+      'SQLite',
+      'GetX',
+      'Responsive Design',
+      'Arabic Localization',
+    ],
+    category: 'Mobile Apps',
+    date: DateTime(2025, 10, 1),
+    githubUrl: 'https://github.com/WaleedAbozeid/hadith-app',
+  ),
+
+  // 7. Sales Data Analysis Dashboard — لوحة تفاعلية متقدمة لتحليل الأرباح
+  Project(
+    id: '8',
+    title: 'Sales Data Analysis Dashboard',
+    description:
+        'لوحة تحكم تفاعلية (Dashboard) لتحليل المبيعات، الأرباح، وأداء المنتجات والمناطق باستخدام Power BI.',
+    fullDescription:
+        'مشروع تحليل بيانات شامل يهدف إلى استخراج رؤى قيمة من بيانات المبيعات وبناء لوحة تحكم تفاعلية لمساعدة الإدارة في اتخاذ القرارات الصحيحة.\n\n'
+        'النقاط الرئيسية التي يعرضها الداشبورد:\n'
+        '• تحليل الإيرادات (Revenue) والأرباح (Profit) على مدار الأشهر وتتبع نمو المبيعات.\n'
+        '• مقارنة الإيرادات حسب فئة المنتج (Accessories, Clothing, Electronics, Furniture).\n'
+        '• تحليل أداء المناطق الجغرافية (Region) لمعرفة المناطق الأعلى تحقيقاً للإيرادات (مثل الجيزة، المنيا، القاهرة، أسيوط والإسكندرية).\n'
+        '• عرض أعلى 5 منتجات من حيث التكلفة.\n'
+        '• توفير فلاتر تفاعلية مرنة تتيح للمستخدم تصفية البيانات حسب الشهر أو فئة المنتج بدقة.',
+    images: [
+      'assets/Projects/Data Analysis/task3/3.png',
+      'assets/Projects/Data Analysis/task3/4.png',
+    ],
+    techStack: [
+      'Power BI',
+      'Data Analysis',
+      'Data Visualization',
+      'Dashboard Design',
+    ],
+    category: 'Data Analysis',
+    date: DateTime(2025, 8, 1),
+  ),
+
+  // 8. Retail Sales Data Analysis & Dashboard — تنظيف بيانات وتصور بياني
   Project(
     id: '7',
     title: 'Retail Sales Data Analysis & Dashboard',
@@ -373,32 +404,6 @@ final List<Project> sampleProjects = [
       'Dashboard Design',
     ],
     category: 'Data Analysis',
-    date: DateTime.now(),
-  ),
-  Project(
-    id: '8',
-    title: 'Sales Data Analysis Dashboard',
-    description:
-        'لوحة تحكم تفاعلية (Dashboard) لتحليل المبيعات، الأرباح، وأداء المنتجات والمناطق باستخدام Power BI.',
-    fullDescription:
-        'مشروع تحليل بيانات شامل يهدف إلى استخراج رؤى قيمة من بيانات المبيعات وبناء لوحة تحكم تفاعلية لمساعدة الإدارة في اتخاذ القرارات الصحيحة.\n\n'
-        'النقاط الرئيسية التي يعرضها الداشبورد:\n'
-        '• تحليل الإيرادات (Revenue) والأرباح (Profit) على مدار الأشهر وتتبع نمو المبيعات.\n'
-        '• مقارنة الإيرادات حسب فئة المنتج (Accessories, Clothing, Electronics, Furniture).\n'
-        '• تحليل أداء المناطق الجغرافية (Region) لمعرفة المناطق الأعلى تحقيقاً للإيرادات (مثل الجيزة، المنيا، القاهرة، أسيوط والإسكندرية).\n'
-        '• عرض أعلى 5 منتجات من حيث التكلفة.\n'
-        '• توفير فلاتر تفاعلية مرنة تتيح للمستخدم تصفية البيانات حسب الشهر أو فئة المنتج بدقة.',
-    images: [
-      'assets/Projects/Data Analysis/task3/3.png', // مسار صورة لوحة التحكم (الداشبورد)
-      'assets/Projects/Data Analysis/task3/4.png', // مسار صورة البيانات
-    ],
-    techStack: [
-      'Power BI',
-      'Data Analysis',
-      'Data Visualization',
-      'Dashboard Design',
-    ],
-    category: 'Data Analysis',
-    date: DateTime.now(),
+    date: DateTime(2025, 7, 1),
   ),
 ];
